@@ -1,0 +1,5 @@
+export const SET_CONNECTED = "SET_CONNECTED"
+export const START_WEB_APP = "START_WEB_APP"
+export const STOP_WEB_APP = "STOP_WEB_APP"
+export const RESET = "RESET"
+export const DELETE_TOUR = "DELETE_TOUR"

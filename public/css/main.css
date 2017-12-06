@@ -1,0 +1,175 @@
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.black {
+  background-color: black;
+}
+
+.fullscreen {
+  position: absolute;
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+  border: 0px;
+}
+
+.status {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+}
+
+.status::before {
+  content: url(../images/disconnected.svg);
+}
+
+.status.connected::before {
+  content: url(../images/connected.svg);
+}
+
+.dimmer {
+  pointer-events: none;
+  background-color: black;
+  opacity: 0.4;
+}
+
+.dimmer-enter {
+  opacity: 0;
+  will-change: opacity;
+}
+
+.dimmer-enter.dimmer-enter-active {
+  opacity: 0.4;
+  transition: opacity 500ms linear 500ms;
+}
+
+.dimmer-exit {
+  opacity: 0.4;
+  will-change: opacity;
+}
+
+.dimmer-exit.dimmer-exit-active {
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+
+.fade-enter {
+  opacity: 0;
+  will-change: opacity;
+}
+
+.fade-enter.fade-enter-active {
+  opacity: 1;
+  transition: opacity 500ms linear 500ms;
+}
+
+.fade-exit {
+  opacity: 1;
+  will-change: opacity;
+}
+
+.fade-exit.fade-exit-active {
+  opacity: 0;
+  transition: opacity 500ms linear;
+}
+
+.scrollRight-enter {
+  transform: translate(100%, 0);
+  will-change: transform;
+}
+
+.scrollRight-enter.scrollRight-enter-active {
+  transform: translate(0, 0);
+  transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.scrollRight-exit {
+  transform: translate(0, 0);
+  will-change: transform;
+}
+
+.scrollRight-exit.scrollRight-exit-active {
+  transform: translate(100%, 0);
+  transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.scrollLeft-enter {
+  transform: translate(-100%, 0);
+  will-change: transform;
+}
+
+.scrollLeft-enter.scrollLeft-enter-active {
+  transform: translate(0, 0);
+  transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.scrollLeft-exit {
+  transform: translate(0, 0);
+  will-change: transform;
+}
+
+.scrollLeft-exit.scrollLeft-exit-active {
+  transform: translate(-100%, 0);
+  transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.scale-enter {
+  opacity: 0;
+  transform: translateX(100%) scale(0.3);
+  will-change: opacity, transform;
+}
+
+.scale-enter.scale-enter-active {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  transition:
+    opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms, /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+    transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.scale-exit {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+  will-change: opacity, transform;
+}
+
+.scale-exit.scale-exit-active {
+  opacity: 0;
+  transform: translateX(100%) scale(0.3);
+  transition:
+    opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms, /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+    transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
+}
+
+.grayCrossFade-enter {
+  opacity: 0;
+  -webkit-filter: grayscale(100%) contrast(3);
+  will-change: opacity, -webkit-filter;
+}
+
+.grayCrossFade-enter.grayCrossFade-enter-active {
+  opacity: 1;
+  -webkit-filter: grayscale(0%) contrast(1);
+  transition:
+    opacity 1000ms linear 1000ms,
+    -webkit-filter 1000ms linear 2000ms;
+}
+
+.grayCrossFade-exit {
+  opacity: 1;
+  -webkit-filter: grayscale(0%) contrast(1);
+  will-change: opacity, -webkit-filter;
+}
+
+.grayCrossFade-exit.grayCrossFade-exit-active {
+  opacity: 0;
+  -webkit-filter: grayscale(100%) contrast(3);
+  transition:
+    opacity 1000ms linear 1000ms,
+    -webkit-filter 1000ms linear;
+}
