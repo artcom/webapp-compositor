@@ -17,6 +17,10 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
     store.dispatch(setConnected(true))
   })
 
+  mqtt.once("connect", () => {
+    publishDefaultActions()
+  })
+
   mqtt.on("close", () => {
     store.dispatch(setConnected(false))
   })
@@ -27,6 +31,7 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
 
   mqtt.subscribe(`${deviceTopic}/doReset`, () => {
     store.dispatch(reset())
+    publishDefaultActions()
   })
 
   mqtt.subscribe(`${deviceTopic}/doStartApp`, () => {
@@ -44,4 +49,8 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
   mqtt.subscribe(`${administrationTopic}/onTourDelete`, (tour) => {
     store.dispatch(deleteTour(tour))
   })
+
+  function publishDefaultActions() {
+    mqtt.publish("tGallery/doExecuteActionList", { topic: `${deviceTopic}/defaultActions` })
+  }
 }
