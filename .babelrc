@@ -1,15 +1,10 @@
 {
   "presets": [
-    ["es2015", { "modules": false }],
-    "react"
-    ],
-  "plugins": [
-    "syntax-object-rest-spread",
-    "transform-object-rest-spread"
-  ],
-  "env": {
-    "test": {
-      "presets": ["es2015"]
-    }
-  }
+    ["@babel/preset-env", {
+      "targets": { "chrome": "76" },
+      "useBuiltIns": "usage",
+      "corejs": 3
+    }],
+    "@babel/preset-react"
+  ]
 }

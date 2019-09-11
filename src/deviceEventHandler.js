@@ -38,15 +38,15 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
     store.dispatch(reset())
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStartWebApp`, (payload) => {
+  mqtt.subscribe(`${deviceTopic}/doStartWebApp`, payload => {
     store.dispatch(startWebApp(payload, bootstrapData))
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStopWebApp`, (payload) => {
+  mqtt.subscribe(`${deviceTopic}/doStopWebApp`, payload => {
     store.dispatch(stopWebApp(payload))
   })
 
-  mqtt.subscribe(`${administrationTopic}/onTourDelete`, (tour) => {
+  mqtt.subscribe(`${administrationTopic}/onTourDelete`, tour => {
     store.dispatch(deleteTour(tour))
   })
 
