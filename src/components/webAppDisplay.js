@@ -9,7 +9,7 @@ import transitions from "../transitions"
 export default connect(mapStateToProps)(WebAppDisplay)
 
 function mapStateToProps({ connected, layers }) {
-  return { connected, layers: layers.map((layer) => layer.toJS()).toArray() }
+  return { connected, layers: layers.map(layer => layer.toJS()).toArray() }
 }
 
 function WebAppDisplay({ connected, layers }) {

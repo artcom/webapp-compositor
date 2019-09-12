@@ -33,6 +33,7 @@
     "webpack-cli": "^3.3.8"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.3",
     "babel-register": "^6.26.0",
     "chai": "^4.2.0",
     "eslint": "^6.3.0",

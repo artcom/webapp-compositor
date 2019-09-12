@@ -1,3 +1,4 @@
 {
-  "extends": "artcom-react"
+  "extends": "artcom-react",
+  "parser": "babel-eslint"
 }
