@@ -5,8 +5,9 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint src",
-    "watch": "NODE_ENV=development webpack-dev-server",
-    "start": "NODE_ENV=production webpack -p && http-server ./public -p $PORT -c 0"
+    "stats": "webpack --profile --json --env.production > stats.json",
+    "watch": "webpack-dev-server --env.development",
+    "start": "webpack --env.production && http-server ./dist"
   },
   "engines": {
     "node": "9.2.0"
@@ -17,6 +18,9 @@
     "@babel/preset-react": "^7.0.0",
     "babel-loader": "^8.0.6",
     "classnames": "^2.2.6",
+    "css-loader": "^3.2.0",
+    "file-loader": "^4.2.0",
+    "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.11.1",
     "immutable": "^3.8.2",
     "lodash.flatmap": "^4.5.0",
