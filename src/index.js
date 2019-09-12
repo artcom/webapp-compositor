@@ -9,6 +9,7 @@ import { createLogger } from "redux-logger"
 import WebAppDisplay from "./components/webAppDisplay"
 import createEventHandler from "./deviceEventHandler"
 import * as reducers from "./reducers"
+import "../css/main.css"
 
 const logger = createLogger({
   collapsed: true,
