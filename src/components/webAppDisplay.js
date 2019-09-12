@@ -8,13 +8,16 @@ import transitions from "../transitions"
 export default connect(mapStateToProps)(WebAppDisplay)
 
 function mapStateToProps({ connected, layers }) {
-  return { connected, layers: layers.filter(layer => layer) }
+  return { connected, layers }
 }
 
 function WebAppDisplay({ connected, layers }) {
-  return layers.length === 0
-    ? <Status connected={ connected } />
-    : <TransitionGroup>{ layers.map(renderLayer) }</TransitionGroup>
+  return (
+    <>
+      <Status connected={ connected } />
+      <TransitionGroup>{ layers.map(renderLayer) }</TransitionGroup>
+    </>
+  )
 }
 
 function renderLayer(layer, index) {
