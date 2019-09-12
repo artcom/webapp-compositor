@@ -13,11 +13,7 @@ module.exports = (env = {}) => ({
         loader: "babel-loader"
       },
       {
-        test: /\.(css)$/,
-        loader: "css-loader"
-      },
-      {
-        test: /\.(svg)$/,
+        test: /\.(svg|css)$/,
         loader: "file-loader",
         options: {
           name: "[path][name].[ext]"
