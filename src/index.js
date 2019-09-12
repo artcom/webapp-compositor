@@ -1,4 +1,3 @@
-import mapValues from "lodash.mapvalues"
 import querystring from "querystring"
 import React from "react"
 import ReactDOM from "react-dom"
@@ -12,9 +11,7 @@ import * as reducers from "./reducers"
 import "../css/main.css"
 
 const logger = createLogger({
-  collapsed: true,
-  stateTransformer:
-    state => mapValues(state, (value, key) => key === "layers" ? value.toJS() : value)
+  collapsed: true
 })
 
 const createStoreWithMiddleware = applyMiddleware(logger)(createStore)

@@ -1,4 +1,3 @@
-import { Map } from "immutable"
 import url from "url"
 
 export function createWebApp(options, lastCount) {
@@ -18,7 +17,7 @@ export function createWebApp(options, lastCount) {
     bootstrapData
   } = options
 
-  return new Map({
+  return {
     uri: bootstrap ? addQueryParams(uri, tour, bootstrapData, layer) : uri,
     tour,
     type: layerType,
@@ -29,7 +28,7 @@ export function createWebApp(options, lastCount) {
     width,
     height,
     count: restart ? lastCount + 1 : lastCount
-  })
+  }
 }
 
 export function addQueryParams(uri, tour, bootstrapParams, layer) {

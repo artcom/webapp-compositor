@@ -1,4 +1,3 @@
-import { Map } from "immutable"
 import isFinite from "lodash.isfinite"
 
 import { createWebApp } from "./webapp"
@@ -13,31 +12,35 @@ export function connected(state = false, action) {
   }
 }
 
-export function layers(state = new Map(), action) {
+export function layers(state = [], action) {
   switch (action.type) {
     case types.START_WEB_APP:
       if (isFinite(action.layer)) {
         const webApp = createWebApp(action, lastCount(state, action.layer))
-        return state.set(action.layer, webApp).sortBy((value, key) => key)
+        const result = state.slice()
+        result[action.layer] = webApp
+        return result
       } else {
         const webApp = createWebApp({ ...action, layer: 0 }, lastCount(state, 0))
-        return new Map([[0, webApp]])
+        return [webApp]
       }
     case types.STOP_WEB_APP:
       if (isFinite(action.layer)) {
-        return state.delete(action.layer)
+        const result = state.slice()
+        result.splice(action.layer, 1)
+        return result
       } else {
         return state
       }
     case types.DELETE_TOUR:
-      return state.filter(layer => layer.get("tour") !== action.tour)
+      return state.filter(layer => layer.tour !== action.tour)
     case types.RESET:
-      return new Map()
+      return []
     default:
       return state
   }
 }
 
 function lastCount(allLayers, layer) {
-  return allLayers.getIn([layer, "count"], 0)
+  return allLayers[layer] ? allLayers[layer].count : 0
 }

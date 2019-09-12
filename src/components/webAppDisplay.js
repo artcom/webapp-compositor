@@ -1,4 +1,3 @@
-import flatMap from "lodash.flatmap"
 import React from "react"
 import { connect } from "react-redux"
 import { CSSTransition, TransitionGroup } from "react-transition-group"
@@ -9,13 +8,13 @@ import transitions from "../transitions"
 export default connect(mapStateToProps)(WebAppDisplay)
 
 function mapStateToProps({ connected, layers }) {
-  return { connected, layers: layers.map(layer => layer.toJS()).toArray() }
+  return { connected, layers: layers.filter(layer => layer) }
 }
 
 function WebAppDisplay({ connected, layers }) {
   return layers.length === 0
     ? <Status connected={ connected } />
-    : <TransitionGroup>{ flatMap(layers, renderLayer) }</TransitionGroup>
+    : <TransitionGroup>{ layers.map(renderLayer) }</TransitionGroup>
 }
 
 function renderLayer(layer, index) {
