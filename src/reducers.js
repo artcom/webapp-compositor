@@ -27,7 +27,7 @@ export function layers(state = [], action) {
     case types.STOP_WEB_APP:
       if (isFinite(action.layer)) {
         const result = state.slice()
-        result.splice(action.layer, 1)
+        delete result[action.layer]
         return result
       } else {
         return state
