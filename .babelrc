@@ -1,10 +1,11 @@
 {
   "presets": [
     ["@babel/preset-env", {
-      "targets": { "electron": "3" },
+      "targets": { "chrome": "76" },
       "useBuiltIns": "usage",
       "corejs": 3
     }],
     "@babel/preset-react"
-  ]
+  ],
+  "plugins": ["@babel/plugin-proposal-object-rest-spread"]
 }
