@@ -148,28 +148,28 @@ html, body {
 
 .grayCrossFade-enter {
   opacity: 0;
-  -webkit-filter: grayscale(100%) contrast(3);
-  will-change: opacity, -webkit-filter;
+  filter: grayscale(100%) contrast(3);
+  will-change: opacity, filter;
 }
 
 .grayCrossFade-enter.grayCrossFade-enter-active {
   opacity: 1;
-  -webkit-filter: grayscale(0%) contrast(1);
+  filter: grayscale(0%) contrast(1);
   transition:
     opacity 1000ms linear 1000ms,
-    -webkit-filter 1000ms linear 2000ms;
+    filter 1000ms linear 2000ms;
 }
 
 .grayCrossFade-exit {
   opacity: 1;
-  -webkit-filter: grayscale(0%) contrast(1);
-  will-change: opacity, -webkit-filter;
+  filter: grayscale(0%) contrast(1);
+  will-change: opacity, filter;
 }
 
 .grayCrossFade-exit.grayCrossFade-exit-active {
   opacity: 0;
-  -webkit-filter: grayscale(100%) contrast(3);
+  filter: grayscale(100%) contrast(3);
   transition:
     opacity 1000ms linear 1000ms,
-    -webkit-filter 1000ms linear;
+    filter 1000ms linear;
 }
