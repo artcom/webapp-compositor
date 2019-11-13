@@ -79,7 +79,7 @@ html, body {
 }
 
 .scrollRight-enter {
-  transform: translate(100%, 0);
+  transform: translate(1920px, 0);
   will-change: transform;
 }
 
@@ -94,12 +94,12 @@ html, body {
 }
 
 .scrollRight-exit.scrollRight-exit-active {
-  transform: translate(100%, 0);
+  transform: translate(1920px, 0);
   transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
 }
 
 .scrollLeft-enter {
-  transform: translate(-100%, 0);
+  transform: translate(-1920px, 0);
   will-change: transform;
 }
 
@@ -114,13 +114,13 @@ html, body {
 }
 
 .scrollLeft-exit.scrollLeft-exit-active {
-  transform: translate(-100%, 0);
+  transform: translate(-1920px, 0);
   transition: transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
 }
 
 .scale-enter {
   opacity: 0;
-  transform: translateX(100%) scale(0.3);
+  transform: translateX(1920px) scale(0.3);
   will-change: opacity, transform;
 }
 
@@ -140,7 +140,7 @@ html, body {
 
 .scale-exit.scale-exit-active {
   opacity: 0;
-  transform: translateX(100%) scale(0.3);
+  transform: translateX(1920px) scale(0.3);
   transition:
     opacity 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms, /* easeOutCubic, see https://matthewlein.com/ceaser/ */
     transform 1000ms cubic-bezier(0.215, 0.610, 0.355, 1.000) 200ms; /* easeOutCubic, see https://matthewlein.com/ceaser/ */
