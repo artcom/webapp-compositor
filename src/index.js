@@ -10,6 +10,10 @@ import createEventHandler from "./deviceEventHandler"
 import * as reducers from "./reducers"
 import "../css/main.css"
 
+if (!process.env.ADMINISTRATION_TOPIC) {
+  console.error("Environment variable 'ADMINISTRATION_TOPIC' is missing")
+}
+
 const logger = createLogger({
   collapsed: true
 })

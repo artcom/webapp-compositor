@@ -26,7 +26,10 @@ module.exports = (env = {}) => ({
     ]
   },
   plugins: [
-    new HtmlWebpackPlugin({ template: "index.ejs" })
+    new HtmlWebpackPlugin({ template: "index.ejs" }),
+    new webpack.EnvironmentPlugin([
+      "ADMINISTRATION_TOPIC"
+    ])
   ],
   output: {
     filename: "[name].[contenthash].js"
