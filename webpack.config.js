@@ -1,6 +1,7 @@
 /* eslint-disable import/no-commonjs */
 
 const HtmlWebpackPlugin = require("html-webpack-plugin")
+const webpack = require("webpack")
 
 module.exports = (env = {}) => ({
   mode: env.production ? "production" : "development",
