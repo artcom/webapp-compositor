@@ -3,9 +3,9 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
 
-module.exports = (env = {}) => ({
-  mode: env.production ? "production" : "development",
-  devtool: env.production ? "source-map" : "eval-source-map",
+module.exports = (env, argv) => ({
+  mode: argv.mode,
+  devtool: argv.mode === "production" ? "source-map" : "eval-source-map",
   module: {
     rules: [
       {
