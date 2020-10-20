@@ -10,7 +10,7 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
     httpBrokerUri
   } = bootstrapData
 
-  const clientId = `WebappCompositor-${device}-${Math.random().toString(16).substr(2, 8)}`
+  const clientId = `WebAppCompositor-${device}-${Math.random().toString(16).substr(2, 8)}`
   const mqtt = topping.connect(wsBrokerUri, httpBrokerUri, { clientId })
 
   mqtt.on("connect", () => {
