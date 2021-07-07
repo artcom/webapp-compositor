@@ -1,6 +1,6 @@
 export default {
   fade: {
-    timeout: { enter: 1000, exit: 500 },
+    timeout: { enter: 1000, exit: 1000 },
     className: "fade"
   },
   scrollLeft: {
@@ -14,6 +14,10 @@ export default {
   scale: {
     timeout: { enter: 1200, exit: 1200 },
     className: "scale"
+  },
+  crossFade: {
+    timeout: { enter: 1000, exit: 500 },
+    className: "crossFade"
   },
   grayCrossFade: {
     timeout: { enter: 3000, exit: 2000 },
