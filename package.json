@@ -7,7 +7,7 @@
     "lint": "eslint src",
     "stats": "webpack --profile --json --mode=production > stats.json",
     "watch": "webpack-dev-server",
-    "start": "webpack --mode=production && http-server ./dist"
+    "start": "webpack --mode=production && http-server -c0 dist"
   },
   "engines": {
     "node": "12.11.0"
