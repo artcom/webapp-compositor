@@ -163,7 +163,7 @@ html, body {
 
 .crossFade-exit.crossFade-exit-active {
   opacity: 0;
-  transition: opacity 0ms linear 1000ms;
+  transition: opacity 500ms linear 1000ms;
 }
 
 .grayCrossFade-enter {

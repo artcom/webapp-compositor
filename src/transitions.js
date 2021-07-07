@@ -16,7 +16,7 @@ export default {
     className: "scale"
   },
   crossFade: {
-    timeout: { enter: 1000, exit: 1000 },
+    timeout: { enter: 1000, exit: 1500 },
     className: "crossFade"
   },
   grayCrossFade: {
