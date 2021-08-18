@@ -1,4 +1,4 @@
-import topping from "mqtt-topping"
+import topping from "@artcom/mqtt-topping"
 
 import { deleteTour, reset, setConnected, startWebApp, stopWebApp } from "./actionCreators"
 
@@ -6,12 +6,10 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
   const {
     device,
     deviceTopic,
-    wsBrokerUri,
-    httpBrokerUri
+    wsBrokerUri
   } = bootstrapData
 
-  const clientId = `WebAppCompositor-${device}-${Math.random().toString(16).substr(2, 8)}`
-  const mqtt = topping.connect(wsBrokerUri, httpBrokerUri, { clientId })
+  const mqtt = topping.connect(wsBrokerUri, { appId: "WebAppCompositor", deviceId: device })
 
   mqtt.on("connect", () => {
     store.dispatch(setConnected(true))
