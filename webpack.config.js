@@ -30,7 +30,11 @@ module.exports = (env, argv) => ({
     new HtmlWebpackPlugin({ template: "index.ejs" }),
     new webpack.EnvironmentPlugin([
       "ADMINISTRATION_TOPIC"
-    ])
+    ]),
+    new webpack.ProvidePlugin({
+      process: "process/browser.js",
+      Buffer: ["buffer", "Buffer"]
+    })
   ],
   output: {
     filename: "[name].[contenthash].js"
