@@ -6,7 +6,9 @@ import * as types from "./actionTypes"
 export function connected(state = false, action) {
   switch (action.type) {
     case types.SET_CONNECTED:
-      return action.connected
+      return true
+    case types.SET_DISCONNECTED:
+      return false
     default:
       return state
   }

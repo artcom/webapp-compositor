@@ -1,10 +1,7 @@
 import * as types from "./actionTypes"
 
 export function setConnected(connected) {
-  return {
-    type: types.SET_CONNECTED,
-    connected
-  }
+  return connected ? { type: types.SET_CONNECTED } : { type: types.SET_DISCONNECTED }
 }
 
 export function startWebApp(payload, bootstrapData) {
