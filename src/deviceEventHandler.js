@@ -49,6 +49,9 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
   })
 
   function publishDefaultActions() {
-    mqtt.publish("tGallery/doExecuteActionList", { topic: `${deviceTopic}/defaultActions` })
+    mqtt.publish(
+      `${administrationTopic}/doExecuteActionList`,
+      { topic: `${deviceTopic}/defaultActions` }
+    )
   }
 }
