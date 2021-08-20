@@ -1,4 +1,3 @@
-import querystring from "querystring"
 import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
@@ -20,7 +19,7 @@ const logger = createLogger({
 
 const createStoreWithMiddleware = applyMiddleware(logger)(createStore)
 const store = createStoreWithMiddleware(combineReducers(reducers))
-const bootstrapData = querystring.parse(window.location.search.substring(1))
+const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.search).entries())
 
 createEventHandler(bootstrapData, process.env.ADMINISTRATION_TOPIC, store)
 
