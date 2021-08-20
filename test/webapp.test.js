@@ -1,5 +1,3 @@
-import url from "url"
-
 import { addQueryParams } from "../src/webapp"
 
 describe("addQueryParams", () => {
@@ -13,9 +11,10 @@ describe("addQueryParams", () => {
 
   it("should add bootstrap", function () {
     const uri = addQueryParams("http://example.com", null, bootstrapData, 0)
-    const parsedUrl = url.parse(uri, true)
+    const url = new URL(uri)
+    const queryParams = Object.fromEntries(url.searchParams.entries())
 
-    expect(parsedUrl.query).toEqual({
+    expect(queryParams).toEqual({
       layer: "0",
       device: "myDevice",
       deviceTopic: "devices/myDevice",
@@ -27,9 +26,10 @@ describe("addQueryParams", () => {
 
   it("should add bootstrap and tour data", function () {
     const uri = addQueryParams("http://example.com", "myTour", bootstrapData, 0)
-    const parsedUrl = url.parse(uri, true)
+    const url = new URL(uri)
+    const queryParams = Object.fromEntries(url.searchParams.entries())
 
-    expect(parsedUrl.query).toEqual({
+    expect(queryParams).toEqual({
       layer: "0",
       device: "myDevice",
       deviceTopic: "devices/myDevice",
@@ -43,9 +43,10 @@ describe("addQueryParams", () => {
 
   it("should keep existing query parameters", function () {
     const uri = addQueryParams("http://example.com/?foo=bar", "myTour", bootstrapData, 0)
-    const parsedUrl = url.parse(uri, true)
+    const url = new URL(uri)
+    const queryParams = Object.fromEntries(url.searchParams.entries())
 
-    expect(parsedUrl.query).toEqual({
+    expect(queryParams).toEqual({
       foo: "bar",
       layer: "0",
       device: "myDevice",
