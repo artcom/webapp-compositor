@@ -32,7 +32,7 @@ export function createWebApp(options, lastCount) {
 export function addQueryParams(uri, tour, bootstrapParams, layer) {
   const url = new URL(uri)
 
-  Object.entries(bootstrapParams).forEach((key, value) => url.searchParams.append(key, value))
+  Object.entries(bootstrapParams).forEach(([key, value]) => url.searchParams.append(key, value))
 
   if (tour) {
     url.searchParams.append("tour", tour)
