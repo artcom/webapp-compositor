@@ -1,5 +1,3 @@
-import { URL } from "url"
-
 export function createWebApp(options, lastCount) {
   const {
     uri,
