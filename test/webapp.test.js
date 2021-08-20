@@ -4,9 +4,9 @@ describe("addQueryParams", () => {
   const bootstrapData = {
     device: "myDevice",
     deviceTopic: "devices/myDevice",
-    httpBrokerUri: "http://broker.backend.t-gallery:8080",
-    tcpBrokerUri: "tcp://broker.backend.t-gallery:1883",
-    wsBrokerUri: "ws://broker.backend.t-gallery:80/mqtt"
+    httpBrokerUri: "http://broker.backend.example.com:8080",
+    tcpBrokerUri: "tcp://broker.backend.example.com:1883",
+    wsBrokerUri: "ws://broker.backend.example.com:80/mqtt"
   }
 
   it("should add bootstrap", function () {
@@ -18,9 +18,9 @@ describe("addQueryParams", () => {
       layer: "0",
       device: "myDevice",
       deviceTopic: "devices/myDevice",
-      httpBrokerUri: "http://broker.backend.t-gallery:8080",
-      tcpBrokerUri: "tcp://broker.backend.t-gallery:1883",
-      wsBrokerUri: "ws://broker.backend.t-gallery:80/mqtt"
+      httpBrokerUri: "http://broker.backend.example.com:8080",
+      tcpBrokerUri: "tcp://broker.backend.example.com:1883",
+      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt"
     })
   })
 
@@ -33,9 +33,9 @@ describe("addQueryParams", () => {
       layer: "0",
       device: "myDevice",
       deviceTopic: "devices/myDevice",
-      httpBrokerUri: "http://broker.backend.t-gallery:8080",
-      tcpBrokerUri: "tcp://broker.backend.t-gallery:1883",
-      wsBrokerUri: "ws://broker.backend.t-gallery:80/mqtt",
+      httpBrokerUri: "http://broker.backend.example.com:8080",
+      tcpBrokerUri: "tcp://broker.backend.example.com:1883",
+      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
       tourTopic: "tours/myTour"
     })
@@ -51,9 +51,9 @@ describe("addQueryParams", () => {
       layer: "0",
       device: "myDevice",
       deviceTopic: "devices/myDevice",
-      httpBrokerUri: "http://broker.backend.t-gallery:8080",
-      tcpBrokerUri: "tcp://broker.backend.t-gallery:1883",
-      wsBrokerUri: "ws://broker.backend.t-gallery:80/mqtt",
+      httpBrokerUri: "http://broker.backend.example.com:8080",
+      tcpBrokerUri: "tcp://broker.backend.example.com:1883",
+      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
       tourTopic: "tours/myTour"
     })
