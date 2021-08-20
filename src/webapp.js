@@ -1,4 +1,4 @@
-import url from "url"
+import { URL } from "url"
 
 export function createWebApp(options, lastCount) {
   const {
@@ -32,14 +32,18 @@ export function createWebApp(options, lastCount) {
 }
 
 export function addQueryParams(uri, tour, bootstrapParams, layer) {
-  const parts = url.parse(uri, true)
-  const bootstrapQuery = { ...bootstrapParams, layer }
+  const url = new URL(uri)
+
+  Object.entries(bootstrapParams).forEach((key, value) => url.searchParams.append(key, value))
 
   if (tour) {
-    bootstrapQuery.tour = tour
-    bootstrapQuery.tourTopic = `tours/${tour}`
+    url.searchParams.append("tour", tour)
+    url.searchParams.append("tourTopic", `tours/${tour}`)
   }
 
-  return url.format({ ...parts, query: { ...bootstrapQuery, ...parts.query }, search: null })
-}
+  if (Number.isInteger(layer)) {
+    url.searchParams.append("layer", layer)
+  }
 
+  return url.href
+}
