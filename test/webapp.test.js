@@ -58,4 +58,21 @@ describe("addQueryParams", () => {
       tourTopic: "tours/myTour"
     })
   })
+
+  it("should not overwrite existing bootstrap query parameters", function () {
+    const uri = addQueryParams("http://example.com/?device=myNewDevice", "myTour", bootstrapData, 0)
+    const url = new URL(uri)
+    const queryParams = Object.fromEntries(url.searchParams.entries())
+
+    expect(queryParams).toEqual({
+      layer: "0",
+      device: "myNewDevice",
+      deviceTopic: "devices/myDevice",
+      httpBrokerUri: "http://broker.backend.example.com:8080",
+      tcpBrokerUri: "tcp://broker.backend.example.com:1883",
+      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
+      tour: "myTour",
+      tourTopic: "tours/myTour"
+    })
+  })
 })

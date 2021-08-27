@@ -32,16 +32,24 @@ export function createWebApp(options, lastCount) {
 export function addQueryParams(uri, tour, bootstrapParams, layer) {
   const url = new URL(uri)
 
-  Object.entries(bootstrapParams).forEach(([key, value]) => url.searchParams.append(key, value))
+  Object.entries(bootstrapParams).forEach(
+    ([key, value]) => appendIfNotPresent(url.searchParams, key, value)
+  )
 
   if (tour) {
-    url.searchParams.append("tour", tour)
-    url.searchParams.append("tourTopic", `tours/${tour}`)
+    appendIfNotPresent(url.searchParams, "tour", tour)
+    appendIfNotPresent(url.searchParams, "tourTopic", `tours/${tour}`)
   }
 
   if (Number.isInteger(layer)) {
-    url.searchParams.append("layer", layer)
+    appendIfNotPresent(url.searchParams, "layer", layer)
   }
 
   return url.href
+}
+
+function appendIfNotPresent(searchParams, key, value) {
+  if (!searchParams.has(key)) {
+    searchParams.append(key, value)
+  }
 }
