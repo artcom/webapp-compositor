@@ -19,9 +19,9 @@ module.exports = (env, argv) => ({
       },
       {
         test: /\.(svg)$/,
-        loader: "file-loader",
-        options: {
-          name: "[path][name].[ext]"
+        type: "asset/resource",
+        generator: {
+          filename: "[path][name][ext]"
         }
       }
     ]
