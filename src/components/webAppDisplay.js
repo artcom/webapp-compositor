@@ -40,7 +40,18 @@ function renderDimmer(index) {
   )
 }
 
-function renderWebApp({ count, height, index, left, top, transition, type, uri, width }) {
+function renderWebApp({
+  backgroundColor,
+  count,
+  height,
+  index,
+  layerType,
+  left,
+  top,
+  transition,
+  uri,
+  width
+}) {
   const { timeout, className } = transitions[transition]
   const style = { top, left, width, height }
 
@@ -49,7 +60,9 @@ function renderWebApp({ count, height, index, left, top, transition, type, uri, 
       key={ `${index}${uri}${count}` }
       timeout={ timeout }
       classNames={ className }>
-      { React.createElement(type, { className: "fullscreen", src: uri, style }) }
+      <div className="fullscreen" style={ { backgroundColor } }>
+        { React.createElement(layerType, { className: "fullscreen", src: uri, style }) }
+      </div>
     </CSSTransition>
   )
 }
