@@ -10,7 +10,7 @@
     "start": "webpack --mode=production && http-server -c0 dist"
   },
   "engines": {
-    "node": "14.17.5"
+    "node": "16.13.2"
   },
   "dependencies": {
     "@artcom/mqtt-topping": "^3.1.2",
