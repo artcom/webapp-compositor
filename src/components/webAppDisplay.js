@@ -53,16 +53,14 @@ function renderWebApp({
   width
 }) {
   const { timeout, className } = transitions[transition]
-  const style = { top, left, width, height }
+  const style = { top, left, width, height, backgroundColor }
 
   return (
     <CSSTransition
       key={ `${index}${uri}${count}` }
       timeout={ timeout }
       classNames={ className }>
-      <div className="fullscreen" style={ { backgroundColor } }>
-        { React.createElement(layerType, { className: "fullscreen", src: uri, style }) }
-      </div>
+      { React.createElement(layerType, { className: "fullscreen", src: uri, style }) }
     </CSSTransition>
   )
 }
