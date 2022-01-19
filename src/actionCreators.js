@@ -14,7 +14,7 @@ export function startWebApp(payload, bootstrapData) {
     restart = true,
     transition = "fade",
     dimBackground = false,
-    backgroundColor = undefined,
+    backgroundColor,
     left = "0px",
     top = "0px",
     width = "100%",
