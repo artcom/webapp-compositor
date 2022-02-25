@@ -49,6 +49,7 @@ function renderWebApp({
   const { timeout, className } = transitions[transition]
   const style = { top, left, width, height, backgroundColor }
   const allow = "camera *; microphone *"
+
   return (
     <CSSTransition key={`${index}${uri}${count}`} timeout={timeout} classNames={className}>
       {React.createElement(layerType, { className: "fullscreen", src: uri, style, allow })}
