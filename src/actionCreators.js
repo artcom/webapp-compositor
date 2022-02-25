@@ -18,7 +18,7 @@ export function startWebApp(payload, bootstrapData) {
     left = "0px",
     top = "0px",
     width = "100%",
-    height = "100%"
+    height = "100%",
   } = payload
 
   return {
@@ -36,26 +36,26 @@ export function startWebApp(payload, bootstrapData) {
     top,
     width,
     height,
-    bootstrapData
+    bootstrapData,
   }
 }
 
 export function stopWebApp({ layer }) {
   return {
     type: types.STOP_WEB_APP,
-    layer
+    layer,
   }
 }
 
 export function reset() {
   return {
-    type: types.RESET
+    type: types.RESET,
   }
 }
 
 export function deleteTour(tour) {
   return {
     type: types.DELETE_TOUR,
-    tour
+    tour,
   }
 }

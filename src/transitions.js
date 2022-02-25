@@ -1,34 +1,34 @@
 export default {
   fade: {
     timeout: { enter: 1000, exit: 500 },
-    className: "fade"
+    className: "fade",
   },
   scrollLeft: {
     timeout: { enter: 1200, exit: 1200 },
-    className: "scrollLeft"
+    className: "scrollLeft",
   },
   scrollRight: {
     timeout: { enter: 1200, exit: 1200 },
-    className: "scrollRight"
+    className: "scrollRight",
   },
   scale: {
     timeout: { enter: 1200, exit: 1200 },
-    className: "scale"
+    className: "scale",
   },
   crossFade: {
     timeout: { enter: 1000, exit: 1500 },
-    className: "crossFade"
+    className: "crossFade",
   },
   grayCrossFade: {
     timeout: { enter: 3000, exit: 2000 },
-    className: "grayCrossFade"
+    className: "grayCrossFade",
   },
   dimmer: {
     timeout: { enter: 1000, exit: 500 },
-    className: "dimmer"
+    className: "dimmer",
   },
   none: {
     timeout: { enter: 0, exit: 0 },
-    className: "none"
-  }
+    className: "none",
+  },
 }

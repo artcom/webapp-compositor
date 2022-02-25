@@ -1,4 +1,3 @@
-import React from "react"
 import ReactDOM from "react-dom"
 import { Provider } from "react-redux"
 import { applyMiddleware, combineReducers, createStore } from "redux"
@@ -9,23 +8,26 @@ import createEventHandler from "./deviceEventHandler"
 import * as reducers from "./reducers"
 import "../css/main.css"
 
-if (!process.env.ADMINISTRATION_TOPIC) {
+// eslint-disable-next-line no-undef
+const administrationTopic = process.env.ADMINISTRATION_TOPIC
+
+if (!administrationTopic) {
   console.error("Environment variable 'ADMINISTRATION_TOPIC' is missing")
 }
 
 const logger = createLogger({
-  collapsed: true
+  collapsed: true,
 })
 
 const createStoreWithMiddleware = applyMiddleware(logger)(createStore)
 const store = createStoreWithMiddleware(combineReducers(reducers))
 const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.search).entries())
 
-createEventHandler(bootstrapData, process.env.ADMINISTRATION_TOPIC, store)
+createEventHandler(bootstrapData, administrationTopic, store)
 
 ReactDOM.render(
-  <Provider store={ store }>
-    <WebAppDisplay />
+  <Provider store={store}>
+    <WebAppDisplay key="webAppDisplay" />
   </Provider>,
   document.getElementById("app")
 )

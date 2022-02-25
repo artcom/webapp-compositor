@@ -3,11 +3,7 @@ import { connect } from "@artcom/mqtt-topping"
 import { deleteTour, reset, setConnected, startWebApp, stopWebApp } from "./actionCreators"
 
 export default function createEventHandler(bootstrapData, administrationTopic, store) {
-  const {
-    device,
-    deviceTopic,
-    wsBrokerUri
-  } = bootstrapData
+  const { device, deviceTopic, wsBrokerUri } = bootstrapData
 
   const mqtt = connect(wsBrokerUri, { appId: "WebAppCompositor", deviceId: device })
 
@@ -36,22 +32,21 @@ export default function createEventHandler(bootstrapData, administrationTopic, s
     store.dispatch(reset())
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStartWebApp`, payload => {
+  mqtt.subscribe(`${deviceTopic}/doStartWebApp`, (payload) => {
     store.dispatch(startWebApp(payload, bootstrapData))
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStopWebApp`, payload => {
+  mqtt.subscribe(`${deviceTopic}/doStopWebApp`, (payload) => {
     store.dispatch(stopWebApp(payload))
   })
 
-  mqtt.subscribe(`${administrationTopic}/onTourDelete`, tour => {
+  mqtt.subscribe(`${administrationTopic}/onTourDelete`, (tour) => {
     store.dispatch(deleteTour(tour))
   })
 
   function publishDefaultActions() {
-    mqtt.publish(
-      `${administrationTopic}/doExecuteActionList`,
-      { topic: `${deviceTopic}/defaultActions` }
-    )
+    mqtt.publish(`${administrationTopic}/doExecuteActionList`, {
+      topic: `${deviceTopic}/defaultActions`,
+    })
   }
 }

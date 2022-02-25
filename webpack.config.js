@@ -1,4 +1,4 @@
-/* eslint-disable import/no-commonjs */
+/* eslint-disable no-undef */
 
 const HtmlWebpackPlugin = require("html-webpack-plugin")
 const webpack = require("webpack")
@@ -11,32 +11,30 @@ module.exports = (env, argv) => ({
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        loader: "babel-loader"
+        loader: "babel-loader",
       },
       {
         test: /\.(css)$/,
-        use: ["style-loader", "css-loader"]
+        use: ["style-loader", "css-loader"],
       },
       {
         test: /\.(svg)$/,
         type: "asset/resource",
         generator: {
-          filename: "[path][name][ext]"
-        }
-      }
-    ]
+          filename: "[path][name][ext]",
+        },
+      },
+    ],
   },
   plugins: [
     new HtmlWebpackPlugin({ template: "index.ejs" }),
-    new webpack.EnvironmentPlugin([
-      "ADMINISTRATION_TOPIC"
-    ]),
+    new webpack.EnvironmentPlugin(["ADMINISTRATION_TOPIC"]),
     new webpack.ProvidePlugin({
       process: "process/browser.js",
-      Buffer: ["buffer", "Buffer"]
-    })
+      Buffer: ["buffer", "Buffer"],
+    }),
   ],
   output: {
-    filename: "[name].[contenthash].js"
-  }
+    filename: "[name].[contenthash].js",
+  },
 })

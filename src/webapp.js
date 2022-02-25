@@ -13,7 +13,7 @@ export function createWebApp(options, lastCount) {
     top,
     width,
     height,
-    bootstrapData
+    bootstrapData,
   } = options
 
   return {
@@ -27,15 +27,15 @@ export function createWebApp(options, lastCount) {
     top,
     width,
     height,
-    count: restart ? lastCount + 1 : lastCount
+    count: restart ? lastCount + 1 : lastCount,
   }
 }
 
 export function addQueryParams(uri, tour, bootstrapParams, layer) {
   const url = new URL(uri)
 
-  Object.entries(bootstrapParams).forEach(
-    ([key, value]) => appendIfNotPresent(url.searchParams, key, value)
+  Object.entries(bootstrapParams).forEach(([key, value]) =>
+    appendIfNotPresent(url.searchParams, key, value)
   )
 
   if (tour) {

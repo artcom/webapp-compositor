@@ -14,28 +14,22 @@ function mapStateToProps({ connected, layers }) {
 function WebAppDisplay({ connected, layers }) {
   return (
     <>
-      <Status connected={ connected } />
-      <TransitionGroup>{ layers.map(renderLayer) }</TransitionGroup>
+      <Status connected={connected} />
+      <TransitionGroup>{layers.map(renderLayer)}</TransitionGroup>
     </>
   )
 }
 
 function renderLayer(layer, index) {
-  return [
-    layer.dimBackground && renderDimmer(index),
-    renderWebApp(layer)
-  ]
+  return [layer.dimBackground && renderDimmer(index), renderWebApp(layer)]
 }
 
 function renderDimmer(index) {
   const { timeout, className } = transitions.dimmer
 
   return (
-    <CSSTransition
-      key={ `dimmer${index}` }
-      timeout={ timeout }
-      classNames={ className }>
-      <div className={ "fullscreen dimmer" } />
+    <CSSTransition key={`dimmer${index}`} timeout={timeout} classNames={className}>
+      <div key="dimmer" className={"fullscreen dimmer"} />
     </CSSTransition>
   )
 }
@@ -50,17 +44,14 @@ function renderWebApp({
   top,
   transition,
   uri,
-  width
+  width,
 }) {
   const { timeout, className } = transitions[transition]
   const style = { top, left, width, height, backgroundColor }
-
+  const allow = "camera *; microphone *"
   return (
-    <CSSTransition
-      key={ `${index}${uri}${count}` }
-      timeout={ timeout }
-      classNames={ className }>
-      { React.createElement(layerType, { className: "fullscreen", src: uri, style }) }
+    <CSSTransition key={`${index}${uri}${count}`} timeout={timeout} classNames={className}>
+      {React.createElement(layerType, { className: "fullscreen", src: uri, style, allow })}
     </CSSTransition>
   )
 }

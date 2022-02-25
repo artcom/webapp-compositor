@@ -35,7 +35,7 @@ export function layers(state = [], action) {
         return state
       }
     case types.DELETE_TOUR:
-      return state.filter(layer => layer.tour !== action.tour)
+      return state.filter((layer) => layer.tour !== action.tour)
     case types.RESET:
       return []
     default:

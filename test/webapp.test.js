@@ -6,7 +6,7 @@ describe("addQueryParams", () => {
     deviceTopic: "devices/myDevice",
     httpBrokerUri: "http://broker.backend.example.com:8080",
     tcpBrokerUri: "tcp://broker.backend.example.com:1883",
-    wsBrokerUri: "ws://broker.backend.example.com:80/mqtt"
+    wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
   }
 
   it("should add bootstrap", function () {
@@ -20,7 +20,7 @@ describe("addQueryParams", () => {
       deviceTopic: "devices/myDevice",
       httpBrokerUri: "http://broker.backend.example.com:8080",
       tcpBrokerUri: "tcp://broker.backend.example.com:1883",
-      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt"
+      wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
     })
   })
 
@@ -37,7 +37,7 @@ describe("addQueryParams", () => {
       tcpBrokerUri: "tcp://broker.backend.example.com:1883",
       wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
-      tourTopic: "tours/myTour"
+      tourTopic: "tours/myTour",
     })
   })
 
@@ -55,7 +55,7 @@ describe("addQueryParams", () => {
       tcpBrokerUri: "tcp://broker.backend.example.com:1883",
       wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
-      tourTopic: "tours/myTour"
+      tourTopic: "tours/myTour",
     })
   })
 
@@ -72,7 +72,7 @@ describe("addQueryParams", () => {
       tcpBrokerUri: "tcp://broker.backend.example.com:1883",
       wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
-      tourTopic: "tours/myTour"
+      tourTopic: "tours/myTour",
     })
   })
 })
