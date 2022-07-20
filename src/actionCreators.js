@@ -12,7 +12,7 @@ export function startWebApp(payload, bootstrapData) {
     layerType = "iframe",
     bootstrap = true,
     restart = true,
-    transition = "fade",
+    transition = "crossFade",
     dimBackground = false,
     backgroundColor,
     left = "0px",
