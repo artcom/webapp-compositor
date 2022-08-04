@@ -40,7 +40,7 @@ const DebugControls = () => {
     bootstrap: true,
     bootstrapData: {
       value: "{}",
-      hint: "JSON data to pass to the webapp",
+      hint: "JSON data to pass to the webApp",
     },
     dimBackground: false,
     restart: true,
@@ -71,14 +71,14 @@ const DebugControls = () => {
         )
       )
     }),
-    "Stop Webapp": button((get) => {
+    "Stop WebApp": button((get) => {
       dispatch(
         stopWebApp({
           layer: get("layerIndex"),
         })
       )
     }),
-    "Reset Webapp": button(() => {
+    "Reset WebApp": button(() => {
       dispatch(reset())
     }),
   })
@@ -94,11 +94,11 @@ function getWebAppDataUris() {
   const htmlPage4 = `${head}<div style="width:70vh;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
 
   return {
-    "Webapp 1": `data:text/html,${encodeURIComponent(htmlPage1)}`,
-    "Webapp 2": `data:text/html,${encodeURIComponent(htmlPage2)}`,
-    "Webapp 3": `data:text/html,${encodeURIComponent(htmlPage3)}`,
-    "Webapp 4": `data:text/html,${encodeURIComponent(htmlPage4)}`,
-    "Custom Uri": "Custom Uri",
+    "WebApp 1": `data:text/html,${encodeURIComponent(htmlPage1)}`,
+    "WebApp 2": `data:text/html,${encodeURIComponent(htmlPage2)}`,
+    "WebApp 3": `data:text/html,${encodeURIComponent(htmlPage3)}`,
+    "WebApp 4": `data:text/html,${encodeURIComponent(htmlPage4)}`,
+    [CUSTOM_URI]: CUSTOM_URI,
   }
 }
 

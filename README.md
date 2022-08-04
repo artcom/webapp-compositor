@@ -1,4 +1,4 @@
-# Webapp Compositor
+# WebApp Compositor
 
 The compositor acts as a window manager for webApps on multiple layers with an MQTT API. WebApps can be started with specific enter/exit transitions as well as individual geometry for custom overlay scenarios.
 
