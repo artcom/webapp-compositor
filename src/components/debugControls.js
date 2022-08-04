@@ -88,10 +88,10 @@ const DebugControls = () => {
 
 function getWebAppDataUris() {
   const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw}</style></head>`
-  const htmlPage1 = `${head}<div style="width:100vh;height:100vh;margin-top:0;background:blue">WebApp1</div>`
-  const htmlPage2 = `${head}<div style="width:90vh;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
-  const htmlPage3 = `${head}<div style="width:80vh;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
-  const htmlPage4 = `${head}<div style="width:70vh;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
+  const htmlPage1 = `${head}<div style="width:100vw;height:100vh;margin-top:0;background:blue">WebApp1</div>`
+  const htmlPage2 = `${head}<div style="width:90vw;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
+  const htmlPage3 = `${head}<div style="width:80vw;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
+  const htmlPage4 = `${head}<div style="width:70vw;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
 
   return {
     "WebApp 1": `data:text/html,${encodeURIComponent(htmlPage1)}`,
