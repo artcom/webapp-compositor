@@ -13,7 +13,7 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 
 ### devices/\<device\>/doStartWebApp
 
-This command starts a web application or website with the given `uri`. 
+This command starts a web application or website with the given `uri`.
 
 **Payload Format:**
 
@@ -46,7 +46,7 @@ This command starts a web application or website with the given `uri`.
 
 ### devices/\<device\>/doStopWebApp
 
-This command removes a running web application or websites from the given layer. 
+This command removes a running web application or websites from the given layer.
 
 **Payload Format:**
 
@@ -66,7 +66,7 @@ This command removes a running web application or websites from the given layer.
 
 ### devices/\<device\>/doReset
 
-This command resets the entire compositor which removes all running webApps. 
+This command resets the entire compositor which removes all running webApps.
 
 **Payload Format:**
 
@@ -98,6 +98,10 @@ myTour
 
 ## Tour Context
 
-If a tour is given on `doStartWebApp` the webApp will receive tour related bootstrap param and will be removed `onTourDelete`. 
+If a tour is given on `doStartWebApp` the webApp will receive tour related bootstrap param and will be removed `onTourDelete`.
 
+## Development
 
+Dubugging controls ([leva](https://github.com/pmndrs/leva)) can be activated using the URL query parameter `?debug`
+
+e.g. `http://localhost:8080/?wsBrokerUri=ws://localhost:9001&debug`

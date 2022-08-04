@@ -2,12 +2,14 @@ import { connect } from "react-redux"
 import { AnimatePresence } from "framer-motion"
 
 import Status from "./status"
+import DebugControls from "./debugControls"
 import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 
-const App = ({ connected, layers }) => {
+const App = ({ connected, layers, showDebugControls }) => {
   return (
     <>
+      {showDebugControls && <DebugControls />}
       <Status connected={connected} />
       <AnimatePresence>
         {layers.map((layer, index) => [
