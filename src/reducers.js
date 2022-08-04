@@ -1,6 +1,6 @@
 import isFinite from "lodash.isfinite"
 
-import { createWebApp } from "./webapp"
+import createWebApp from "./createWebApp"
 import * as types from "./actionTypes"
 
 export function connected(state = false, action) {

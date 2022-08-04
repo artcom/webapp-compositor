@@ -1,4 +1,4 @@
-import { addQueryParams } from "../src/webapp"
+import { addQueryParams } from "../src/createWebApp"
 
 describe("addQueryParams", () => {
   const bootstrapData = {

@@ -6,8 +6,8 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 
 ## Run
 
-* Run in development: `ADMINISTRATION_TOPIC=<administration-topic> npm run watch`
-* Start the application: `PORT=5000 ADMINISTRATION_TOPIC=<administration-topic> npm start`
+- Run in development: `ADMINISTRATION_TOPIC=<administration-topic> npm run watch`
+- Start the application: `PORT=5000 ADMINISTRATION_TOPIC=<administration-topic> npm start`
 
 ## API
 
@@ -16,13 +16,14 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 This command starts a web application or website with the given `uri`. 
 
 **Payload Format:**
+
 ```js
 {
   uri: String,
   tour?: String,            // the tour the webApp belongs to, see below
   layer?: Number,           // positiv layer index, default: 0
   layerType?: "iframe" | "webview", // layer type used for the webApp, default: "iframe"
-  transition?: "fade" | "scrollLeft" | "scrollRight" | "scale" | "grayCrossFade" | "none", // default: "fade"
+  transition?: | "dissolve" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "dissolve"
   dimBackground?: Boolean,  // adds a fullscreen dimmed background behind the webApp, default: false
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined
   bootstrap?: Boolean,      // defines wether to append bootstrap params to the uri or not, default: true
@@ -33,7 +34,9 @@ This command starts a web application or website with the given `uri`.
   height?: String           // height of the webApp, default: "100%"
 }
 ```
+
 **Payload Example:**
+
 ```js
 {
   uri: "https://www.wikipedia.org/",
@@ -46,12 +49,15 @@ This command starts a web application or website with the given `uri`.
 This command removes a running web application or websites from the given layer. 
 
 **Payload Format:**
+
 ```js
 {
   layer: Number, // positiv layer index
 }
 ```
+
 **Payload Example:**
+
 ```js
 {
   layer: 0
@@ -63,10 +69,13 @@ This command removes a running web application or websites from the given layer.
 This command resets the entire compositor which removes all running webApps. 
 
 **Payload Format:**
+
 ```js
 null
 ```
+
 **Payload Example:**
+
 ```js
 null
 ```
@@ -76,14 +85,16 @@ null
 This event removes all running webApps wich have been started with the given tour.
 
 **Payload Format:**
+
 ```js
 String
 ```
+
 **Payload Example:**
+
 ```js
 myTour
 ```
-
 
 ## Tour Context
 

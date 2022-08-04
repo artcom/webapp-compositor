@@ -3,7 +3,7 @@ import { Provider } from "react-redux"
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { createLogger } from "redux-logger"
 
-import WebAppDisplay from "./components/webAppDisplay"
+import App from "./components/app"
 import createEventHandler from "./deviceEventHandler"
 import * as reducers from "./reducers"
 import "../css/main.css"
@@ -27,7 +27,7 @@ createEventHandler(bootstrapData, administrationTopic, store)
 
 ReactDOM.render(
   <Provider store={store}>
-    <WebAppDisplay key="webAppDisplay" />
+    <App />
   </Provider>,
   document.getElementById("app")
 )

@@ -1,4 +1,4 @@
-export function createWebApp(options, lastCount) {
+export default (options, lastCount) => {
   const {
     uri,
     tour,
