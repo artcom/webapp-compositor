@@ -12,16 +12,18 @@ import {
 } from "../layers"
 import { DEFAULT_TRANSITION, TRANSITIONS } from "../transitions"
 
+const CUSTOM_URI = "Custom Uri"
+
 const DebugControls = () => {
   const dispatch = useDispatch()
 
   useControls({
     uri: {
-      options: getWebappDataUris(),
+      options: getWebAppDataUris(),
     },
     customUri: {
       value: "",
-      render: (get) => get("uri") === "Custom Uri",
+      render: (get) => get("uri") === CUSTOM_URI,
     },
     layerIndex: {
       value: 0,
@@ -40,9 +42,7 @@ const DebugControls = () => {
       value: "{}",
       hint: "JSON data to pass to the webapp",
     },
-    dimBackground: {
-      value: false,
-    },
+    dimBackground: false,
     restart: true,
     backgroundColor: "rgba(0, 0, 0, 0)",
     left: DEFAULT_LAYER_LEFT,
@@ -53,7 +53,7 @@ const DebugControls = () => {
       dispatch(
         startWebApp(
           {
-            uri: (() => (get("uri") === "Custom Uri" ? get("customUri") : get("uri")))(),
+            uri: (() => (get("uri") === CUSTOM_URI ? get("customUri") : get("uri")))(),
             foo: get("transition"),
             transition: get("transition"),
             layer: get("layerIndex"),
@@ -86,11 +86,12 @@ const DebugControls = () => {
   return <Leva />
 }
 
-function getWebappDataUris() {
-  const htmlPage1 = `<div style="width:100%;height:100%;margin-top:00%;background:blue;font-size:5vw">Webapp1</div>`
-  const htmlPage2 = `<div style="width:90%;height:90%;margin-top:10%;background:red;font-size:5vw">Webapp2</div>`
-  const htmlPage3 = `<div style="width:80%;height:80%;margin-top:20%;background:green;font-size:5vw">Webapp3</div>`
-  const htmlPage4 = `<div style="width:70%;height:70%;margin-top:30%;background:orange;font-size:5vw">Webapp4</div>`
+function getWebAppDataUris() {
+  const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw}</style></head>`
+  const htmlPage1 = `${head}<div style="width:100vh;height:100vh;margin-top:0;background:blue">WebApp1</div>`
+  const htmlPage2 = `${head}<div style="width:90vh;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
+  const htmlPage3 = `${head}<div style="width:80vh;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
+  const htmlPage4 = `${head}<div style="width:70vh;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
 
   return {
     "Webapp 1": `data:text/html,${encodeURIComponent(htmlPage1)}`,
