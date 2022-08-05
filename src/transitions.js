@@ -1,12 +1,12 @@
 export const TRANSITIONS = {
-  DISSOLVE: "dissolve",
+  FADE: "fade",
   FADE_TO_BLACK: "fadeToBlack",
   SCROLL_LEFT: "scrollLeft",
   SCROLL_RIGHT: "scrollRight",
   SCALE_RIGHT: "scaleRight",
   NONE: "none",
 }
-export const DEFAULT_TRANSITION = TRANSITIONS.DISSOLVE
+export const DEFAULT_TRANSITION = TRANSITIONS.FADE
 export const WEBAPP_LOAD_COMPLETE = 0.5
 
 const zLayerVariants = {
@@ -118,7 +118,7 @@ export default {
     },
   },
 
-  [TRANSITIONS.DISSOLVE]: {
+  [TRANSITIONS.FADE]: {
     ...defaultLifeCycleProps,
     variants: {
       ...zLayerVariants,

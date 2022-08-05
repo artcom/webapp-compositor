@@ -23,7 +23,7 @@ This command starts a web application or website with the given `uri`.
   tour?: String,            // the tour the webApp belongs to, see below
   layer?: Number,           // positiv layer index, default: 0
   layerType?: "iframe" | "webview", // layer type used for the webApp, default: "iframe"
-  transition?: | "dissolve" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "dissolve"
+  transition?: | "fade" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "fade"
   dimBackground?: Boolean,  // adds a fullscreen dimmed background behind the webApp, default: false
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined
   bootstrap?: Boolean,      // defines wether to append bootstrap params to the uri or not, default: true
