@@ -8,6 +8,7 @@ export const TRANSITIONS = {
 }
 export const DEFAULT_TRANSITION = TRANSITIONS.FADE
 export const WEBAPP_LOAD_COMPLETE = 0.5
+const DEFAULT_EASING = [0.215, 0.610, 0.355, 1.000]
 
 const zLayerVariants = {
   zLayerEnter: ({ zIndexEnter }) => ({ zIndex: zIndexEnter }),
@@ -51,15 +52,17 @@ export default {
       enter: {
         x: 0,
         transition: {
-          duration: 0.7,
-          delay: WEBAPP_LOAD_COMPLETE,
+          duration: 1,
+          timing: DEFAULT_EASING,
+          delay: 0.2,
         },
       },
       exit: {
         x: "-100%",
         transition: {
-          duration: 0.7,
-          delay: WEBAPP_LOAD_COMPLETE,
+          duration: 1,
+          timing: DEFAULT_EASING,
+          delay: 0.2,
         },
       },
     },
@@ -73,15 +76,17 @@ export default {
       enter: {
         x: 0,
         transition: {
-          duration: 0.7,
-          delay: WEBAPP_LOAD_COMPLETE,
+          duration: 1,
+          timing: DEFAULT_EASING,
+          delay: 0.2,
         },
       },
       exit: {
         x: "100%",
         transition: {
-          duration: 0.7,
-          delay: WEBAPP_LOAD_COMPLETE,
+          duration: 1,
+          timing: DEFAULT_EASING,
+          delay: 0.2,
         },
       },
     },
@@ -104,15 +109,16 @@ export default {
         x: 0,
         transition: {
           duration: 1,
-          timing: [0.215, 0.61, 0.355, 1.0],
+          timing: DEFAULT_EASING,
           delay: 0.2,
         },
       },
       exit: {
         opacity: 0,
         transition: {
-          duration: 0.5,
-          delay: 1,
+          duration: 1,
+          timing: DEFAULT_EASING,
+          delay: 0.2,
         },
       },
     },
