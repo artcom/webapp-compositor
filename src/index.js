@@ -1,4 +1,4 @@
-import ReactDOM from "react-dom"
+import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { createLogger } from "redux-logger"
@@ -28,9 +28,9 @@ const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.sea
 
 createEventHandler(bootstrapData, administrationTopic, store)
 
-ReactDOM.render(
+const root = createRoot(document.getElementById("app")) 
+root.render(
   <Provider store={store}>
     <App showDebugControls={showDebugControls} />
-  </Provider>,
-  document.getElementById("app")
+  </Provider>
 )
