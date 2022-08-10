@@ -10,7 +10,7 @@
     "start": "webpack --mode=production && http-server -c0 dist"
   },
   "engines": {
-    "node": "16.14.0"
+    "node": "16.16.0"
   },
   "dependencies": {
     "@artcom/mqtt-topping-react": "^2.2.0",
@@ -22,7 +22,7 @@
     "classnames": "^2.3.1",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
-    "framer-motion": "^6.5.1",
+    "framer-motion": "https://gitpkg.now.sh/artcom/motion/packages/framer-motion?9accdffd915f72d9fdcd4f06d77e9bd42bc48a19",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
     "leva": "^0.9.29",

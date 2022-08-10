@@ -100,6 +100,9 @@ myTour
 
 If a tour is given on `doStartWebApp` the webApp will receive tour related bootstrap param and will be removed `onTourDelete`.
 
+## Framer-Motion Installation
+Framer-motion is installed using build-files from [this fork](https://github.com/artcom/motion) which incorporate this [pull request](https://github.com/framer/motion/pull/1569) from the [official repository](https://github.com/framer/motion). Since it is a mono-repo with subdirectorys, npm installation uses the online service [https://gitpkg.now.sh](https://gitpkg.now.sh), which creates and streams a tarball of the `framer-motion` subdirectory. (See [package.json](package.json#L25))
+
 ## Development
 
 Dubugging controls ([leva](https://github.com/pmndrs/leva)) can be activated using the URL query parameter `?debug`
