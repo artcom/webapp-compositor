@@ -8,7 +8,7 @@ export const TRANSITIONS = {
 }
 export const DEFAULT_TRANSITION = TRANSITIONS.FADE
 export const WEBAPP_LOAD_COMPLETE = 0.5
-const DEFAULT_EASING = [0.215, 0.610, 0.355, 1.000]
+const DEFAULT_EASING = [0.215, 0.61, 0.355, 1.0]
 
 const zLayerVariants = {
   zLayerEnter: ({ zIndexEnter }) => ({ zIndex: zIndexEnter }),

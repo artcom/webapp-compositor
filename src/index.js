@@ -28,7 +28,7 @@ const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.sea
 
 createEventHandler(bootstrapData, administrationTopic, store)
 
-const root = createRoot(document.getElementById("app")) 
+const root = createRoot(document.getElementById("app"))
 root.render(
   <Provider store={store}>
     <App showDebugControls={showDebugControls} />
