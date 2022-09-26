@@ -3,11 +3,10 @@ import { motion } from "framer-motion"
 import { getWebAppZIndices } from "../layers"
 import transitions from "../transitions"
 
-const WebApp = ({ layer, index }) => {
+const WebApp = ({ layer, enterIndex, exitIndex }) => {
   const { backgroundColor, height, layerType, left, top, transition, uri, width } = layer
   const style = { top, left, width, height, backgroundColor }
   const Layer = motion[layerType]
-  const zLayerIndices = getWebAppZIndices(index)
 
   return (
     <Layer
@@ -16,8 +15,8 @@ const WebApp = ({ layer, index }) => {
       className={"fullscreen"}
       allow={"camera *; microphone *"}
       custom={{
-        zIndexEnter: zLayerIndices.enter,
-        zIndexExit: zLayerIndices.exit,
+        zIndexEnter: getWebAppZIndices(enterIndex).enter,
+        zIndexExit: getWebAppZIndices(exitIndex).exit,
       }}
       {...transitions[transition]}
     />
