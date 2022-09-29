@@ -9,13 +9,10 @@ export const DEFAULT_LAYER_TOP = "0px"
 export const DEFAULT_LAYER_WIDTH = "100%"
 export const DEFAULT_LAYER_HEIGHT = "100%"
 
-export function getDimmerZIndex(layer) {
-  return layer * 3
-}
-
-export function getWebAppZIndices(layer) {
+export function getZIndices(layer) {
   return {
-    enter: layer * 3 + 2,
-    exit: layer * 3 + 1,
+    dimmerZIndex: layer * 3,
+    webAppZIndexExit: layer * 3 + 1,
+    webAppZIndexEnter: layer * 3 + 2,
   }
 }

@@ -1,24 +1,14 @@
 import { motion } from "framer-motion"
+import { getZIndices } from "../layers"
 
-import { WEBAPP_LOAD_COMPLETE } from "../transitions"
-import { getDimmerZIndex } from "../layers"
+import { getTransition, DIMMER } from "../transitions"
 
 const Dimmer = ({ index }) => {
+  const { dimmerZIndex } = getZIndices(index)
+
   return (
     <motion.div
-      initial={{ opacity: 0 }}
-      animate={{
-        opacity: 0.4,
-        transition: {
-          duration: 0.5,
-          delay: WEBAPP_LOAD_COMPLETE,
-        },
-      }}
-      exit={{
-        opacity: 0,
-        transition: { duration: 0.5, delay: 0 },
-      }}
-      style={{ zIndex: getDimmerZIndex(index) }}
+      {...getTransition(dimmerZIndex, dimmerZIndex, DIMMER)}
       className={`fullscreen dimmer`}
     ></motion.div>
   )

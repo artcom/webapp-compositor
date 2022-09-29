@@ -43,6 +43,15 @@ export function layers(state = [], action) {
   }
 }
 
+export function isSingleNewLayer(state = true, action) {
+  switch (action.type) {
+    case types.START_WEB_APP:
+      return !isFinite(action.layer)
+    default:
+      return state
+  }
+}
+
 function lastCount(allLayers, layer) {
   return allLayers[layer] ? allLayers[layer].count : 0
 }
