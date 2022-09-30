@@ -43,7 +43,7 @@ export function layers(state = [], action) {
   }
 }
 
-export function isSingleNewLayer(state = true, action) {
+export function isCleanStart(state = true, action) {
   switch (action.type) {
     case types.START_WEB_APP:
       return !isFinite(action.layer)

@@ -22,8 +22,8 @@ export function getTransition(zIndexEnter, zIndexExit, animationType) {
         zIndex: zIndexEnter,
         transition: { duration: 0 },
       },
-      zLayerExit: (isSingleNewLayer) => ({
-        zIndex: isSingleNewLayer ? zIndexExit - 1000 : zIndexExit,
+      zLayerExit: (isCleanStart) => ({
+        zIndex: isCleanStart ? zIndexExit - 1000 : zIndexExit,
         transition: { duration: 0 },
       }),
       ...animations[animationType],

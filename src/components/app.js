@@ -6,12 +6,12 @@ import DebugControls from "./debugControls"
 import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 
-const App = ({ connected, layers, isSingleNewLayer, showDebugControls }) => {
+const App = ({ connected, layers, isCleanStart, showDebugControls }) => {
   return (
     <>
       {showDebugControls && <DebugControls />}
       <Status connected={connected} />
-      <AnimatePresence custom={isSingleNewLayer}>
+      <AnimatePresence custom={isCleanStart}>
         {layers.map((layer, index) => [
           layer.dimBackground && <Dimmer key={`dimmer ${index}`} index={index} />,
           <WebApp key={`${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
@@ -21,8 +21,8 @@ const App = ({ connected, layers, isSingleNewLayer, showDebugControls }) => {
   )
 }
 
-export default connect(({ connected, layers, isSingleNewLayer }) => ({
+export default connect(({ connected, layers, isCleanStart }) => ({
   connected,
   layers,
-  isSingleNewLayer,
+  isCleanStart,
 }))(App)
