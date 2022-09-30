@@ -45,7 +45,7 @@ const animations = {
       opacity: 0,
       transition: {
         duration: 0.5,
-        delay: 0,
+        delay: WEBAPP_LOAD_COMPLETE,
       },
     },
   },
