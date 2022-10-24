@@ -6,7 +6,7 @@ import { getTransition } from "../transitions"
 const WebApp = ({ layer, index }) => {
   const { backgroundColor, height, layerType, left, top, transition, uri, width } = layer
   const style = { top, left, width, height, backgroundColor }
-  const Layer = motion[layerType]
+  const Layer = motion[layerType.toLowerCase()]
 
   const { webAppZIndexEnter, webAppZIndexExit } = getZIndices(index)
 
