@@ -10,6 +10,7 @@ export const DIMMER = "dimmer"
 export const DEFAULT_TRANSITION = TRANSITIONS.FADE
 const WEBAPP_LOAD_COMPLETE = 0.5
 const DEFAULT_EASING = [0.215, 0.61, 0.355, 1.0]
+const Z_INDEX_OFFSET = 1000
 
 export function getTransition(zIndexEnter, zIndexExit, animationType) {
   return {
@@ -23,7 +24,8 @@ export function getTransition(zIndexEnter, zIndexExit, animationType) {
         transition: { duration: 0 },
       },
       zLayerExit: (isCleanStart) => ({
-        zIndex: isCleanStart ? zIndexExit - 1000 : zIndexExit,
+        // Bring present webapps to the background on a "clean start" (layer: undefined) of a webapp
+        zIndex: isCleanStart ? zIndexExit - Z_INDEX_OFFSET : zIndexExit,
         transition: { duration: 0 },
       }),
       ...animations[animationType],
