@@ -22,7 +22,7 @@
     "classnames": "^2.3.1",
     "css-loader": "^6.7.1",
     "file-loader": "^6.2.0",
-    "framer-motion": "https://gitpkg.now.sh/artcom/motion/packages/framer-motion?9accdffd915f72d9fdcd4f06d77e9bd42bc48a19",
+    "framer-motion": "https://gitpkg.now.sh/artcom/motion/packages/framer-motion?fix/animate-presence",
     "html-webpack-plugin": "^5.5.0",
     "http-server": "^14.1.1",
     "leva": "^0.9.30",
