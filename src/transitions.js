@@ -1,6 +1,7 @@
 export const TRANSITIONS = {
   FADE: "fade",
   FADE_TO_BLACK: "fadeToBlack",
+  FADE_TO_GRAY: "grayCrossFade",
   SCROLL_LEFT: "scrollLeft",
   SCROLL_RIGHT: "scrollRight",
   SCALE_RIGHT: "scaleRight",
@@ -48,6 +49,41 @@ const animations = {
       transition: {
         duration: 0.5,
         delay: WEBAPP_LOAD_COMPLETE,
+      },
+    },
+  },
+
+  [TRANSITIONS.FADE_TO_GRAY]: {
+    initial: {
+      opacity: 0,
+      filter: "grayscale(100%) contrast(3)",
+    },
+    enter: {
+      opacity: 1,
+      filter: "grayscale(0%) contrast(1)",
+      transition: {
+        opacity: {
+          duration: 1,
+          delay: 1,
+        },
+        filter: {
+          duration: 1,
+          delay: 2,
+        },
+      },
+    },
+    exit: {
+      opacity: 0,
+      filter: "grayscale(100%) contrast(3)",
+      transition: {
+        opacity: {
+          duration: 1,
+          delay: 1,
+        },
+        filter: {
+          duration: 1,
+          delay: 0,
+        },
       },
     },
   },
