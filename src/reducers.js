@@ -46,7 +46,7 @@ export function layers(state = [], action) {
 export function isCleanStart(state = true, action) {
   switch (action.type) {
     case types.START_WEB_APP:
-      return !isFinite(action.layer)
+      return action.isCleanStart
     default:
       return state
   }

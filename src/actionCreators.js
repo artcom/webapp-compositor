@@ -13,38 +13,44 @@ export function setConnected(connected) {
 }
 
 export function startWebApp(payload, bootstrapData) {
-  const {
-    uri,
-    tour,
-    layer,
-    layerType = DEFAULT_LAYER_TYPE,
-    bootstrap = true,
-    restart = true,
-    transition = DEFAULT_TRANSITION,
-    dimBackground = false,
-    backgroundColor,
-    left = DEFAULT_LAYER_LEFT,
-    top = DEFAULT_LAYER_TOP,
-    width = DEFAULT_LAYER_WIDTH,
-    height = DEFAULT_LAYER_HEIGHT,
-  } = payload
+  return (dispatch, getState) => {
+    const {
+      uri,
+      tour,
+      layer,
+      layerType = DEFAULT_LAYER_TYPE,
+      bootstrap = true,
+      restart = true,
+      transition = DEFAULT_TRANSITION,
+      dimBackground = false,
+      backgroundColor,
+      left = DEFAULT_LAYER_LEFT,
+      top = DEFAULT_LAYER_TOP,
+      width = DEFAULT_LAYER_WIDTH,
+      height = DEFAULT_LAYER_HEIGHT,
+    } = payload
 
-  return {
-    type: types.START_WEB_APP,
-    uri,
-    tour,
-    layer,
-    layerType,
-    bootstrap,
-    restart,
-    transition,
-    dimBackground,
-    backgroundColor,
-    left,
-    top,
-    width,
-    height,
-    bootstrapData,
+    const { layers } = getState()
+    const isCleanStart = !isFinite(layer) && (restart || !isSameUriPathname(layers[0]?.uri, uri))
+
+    dispatch({
+      type: types.START_WEB_APP,
+      uri,
+      tour,
+      layer,
+      layerType,
+      bootstrap,
+      restart,
+      transition,
+      dimBackground,
+      backgroundColor,
+      left,
+      top,
+      width,
+      height,
+      bootstrapData,
+      isCleanStart,
+    })
   }
 }
 
@@ -66,4 +72,12 @@ export function deleteTour(tour) {
     type: types.DELETE_TOUR,
     tour,
   }
+}
+
+function isSameUriPathname(uri1, uri2) {
+  if (!uri1 || !uri2) return false
+
+  const pathname1 = new URL(uri1).pathname
+  const pathname2 = new URL(uri2).pathname
+  return pathname1 === pathname2
 }

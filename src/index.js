@@ -2,6 +2,7 @@ import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
 import { applyMiddleware, combineReducers, createStore } from "redux"
 import { createLogger } from "redux-logger"
+import thunkMiddleware from "redux-thunk"
 
 import App from "./components/app"
 import createEventHandler from "./deviceEventHandler"
@@ -22,7 +23,7 @@ const logger = createLogger({
   collapsed: true,
 })
 
-const createStoreWithMiddleware = applyMiddleware(logger)(createStore)
+const createStoreWithMiddleware = applyMiddleware(thunkMiddleware, logger)(createStore)
 const store = createStoreWithMiddleware(combineReducers(reducers))
 const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.search).entries())
 
