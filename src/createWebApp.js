@@ -43,9 +43,7 @@ export function addQueryParams(uri, tour, bootstrapParams, layer) {
     appendIfNotPresent(url.searchParams, "tourTopic", `tours/${tour}`)
   }
 
-  if (Number.isInteger(layer)) {
-    appendIfNotPresent(url.searchParams, "layer", layer)
-  }
+  appendIfNotPresent(url.searchParams, "layer", Number.isInteger(layer) ? layer : 0)
 
   return url.href
 }
