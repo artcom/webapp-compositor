@@ -31,15 +31,15 @@ export function startWebApp(payload, bootstrapData) {
     } = payload
 
     const { layers } = getState()
-    const isCleanStart = !isFinite(layer) && (restart || !isSameUriPathname(layers[0]?.uri, uri))
+    const bootstrappedUri = bootstrap ? addQueryParams(uri, tour, bootstrapData, layer) : uri
+    const isCleanStart = !isFinite(layer) && (restart || bootstrappedUri !== layers[0]?.uri)
 
     dispatch({
       type: types.START_WEB_APP,
-      uri,
+      uri: bootstrappedUri,
       tour,
       layer,
       layerType,
-      bootstrap,
       restart,
       transition,
       dimBackground,
@@ -48,7 +48,6 @@ export function startWebApp(payload, bootstrapData) {
       top,
       width,
       height,
-      bootstrapData,
       isCleanStart,
     })
   }
@@ -74,10 +73,25 @@ export function deleteTour(tour) {
   }
 }
 
-function isSameUriPathname(uri1, uri2) {
-  if (!uri1 || !uri2) return false
+export function addQueryParams(uri, tour, bootstrapParams, layer) {
+  const url = new URL(uri)
 
-  const pathname1 = new URL(uri1).pathname
-  const pathname2 = new URL(uri2).pathname
-  return pathname1 === pathname2
+  Object.entries(bootstrapParams).forEach(([key, value]) =>
+    appendIfNotPresent(url.searchParams, key, value)
+  )
+
+  if (tour) {
+    appendIfNotPresent(url.searchParams, "tour", tour)
+    appendIfNotPresent(url.searchParams, "tourTopic", `tours/${tour}`)
+  }
+
+  appendIfNotPresent(url.searchParams, "layer", Number.isInteger(layer) ? layer : 0)
+
+  return url.href
+}
+
+function appendIfNotPresent(searchParams, key, value) {
+  if (!searchParams.has(key)) {
+    searchParams.append(key, value)
+  }
 }
