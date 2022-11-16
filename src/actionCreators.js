@@ -17,7 +17,7 @@ export function startWebApp(payload, bootstrapData) {
     const {
       uri,
       tour,
-      layer,
+      layer = 0,
       layerType = DEFAULT_LAYER_TYPE,
       bootstrap = true,
       restart = true,
@@ -31,16 +31,20 @@ export function startWebApp(payload, bootstrapData) {
     } = payload
 
     const { layers } = getState()
+    const shallRemoveAllOtherWebApps = !isFinite(payload.layer)
     const bootstrappedUri = bootstrap ? addQueryParams(uri, tour, bootstrapData, layer) : uri
-    const isCleanStart = !isFinite(layer) && (restart || bootstrappedUri !== layers[0]?.uri)
+    const isCleanStart =
+      shallRemoveAllOtherWebApps && (restart || bootstrappedUri !== layers[0]?.uri)
 
     dispatch({
       type: types.START_WEB_APP,
+      shallRemoveAllOtherWebApps,
+      layer,
+      restart,
+      isCleanStart,
       uri: bootstrappedUri,
       tour,
-      layer,
       layerType,
-      restart,
       transition,
       dimBackground,
       backgroundColor,
@@ -48,7 +52,6 @@ export function startWebApp(payload, bootstrapData) {
       top,
       width,
       height,
-      isCleanStart,
     })
   }
 }
@@ -85,7 +88,7 @@ export function addQueryParams(uri, tour, bootstrapParams, layer) {
     appendIfNotPresent(url.searchParams, "tourTopic", `tours/${tour}`)
   }
 
-  appendIfNotPresent(url.searchParams, "layer", Number.isInteger(layer) ? layer : 0)
+  appendIfNotPresent(url.searchParams, "layer", layer)
 
   return url.href
 }

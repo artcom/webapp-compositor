@@ -16,16 +16,16 @@ export function connected(state = false, action) {
 
 export function layers(state = [], action) {
   switch (action.type) {
-    case types.START_WEB_APP:
-      if (isFinite(action.layer)) {
-        const webApp = createWebApp(action, lastCount(state, action.layer))
+    case types.START_WEB_APP: {
+      const webApp = createWebApp(action, lastCount(state, action.layer))
+      if (action.shallRemoveAllOtherWebApps) {
+        return [webApp]
+      } else {
         const result = state.slice()
         result[action.layer] = webApp
         return result
-      } else {
-        const webApp = createWebApp({ ...action, layer: 0 }, lastCount(state, 0))
-        return [webApp]
       }
+    }
     case types.STOP_WEB_APP:
       if (isFinite(action.layer)) {
         const result = state.slice()
