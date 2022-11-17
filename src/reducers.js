@@ -42,10 +42,10 @@ export function layers(state = [], action) {
   }
 }
 
-export function isCleanStart(state = true, action) {
+export function areExitingWebAppsToBeOverlaid(state = true, action) {
   switch (action.type) {
     case types.START_WEB_APP:
-      return action.isCleanStart
+      return action.areExitingWebAppsToBeOverlaid
     default:
       return state
   }

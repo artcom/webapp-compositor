@@ -24,9 +24,8 @@ export function getTransition(zIndexEnter, zIndexExit, animationType) {
         zIndex: zIndexEnter,
         transition: { duration: 0 },
       },
-      zLayerExit: (isCleanStart) => ({
-        // Bring present webapps to the background on a "clean start" (layer: undefined) of a webapp
-        zIndex: isCleanStart ? zIndexExit - Z_INDEX_OFFSET : zIndexExit,
+      zLayerExit: (areExitingWebAppsToBeOverlaid) => ({
+        zIndex: areExitingWebAppsToBeOverlaid ? zIndexExit - Z_INDEX_OFFSET : zIndexExit,
         transition: { duration: 0 },
       }),
       ...animations[animationType],

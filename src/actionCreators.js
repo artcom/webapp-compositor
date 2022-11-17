@@ -33,7 +33,7 @@ export function startWebApp(payload, bootstrapData) {
     const { layers } = getState()
     const shallRemoveAllOtherWebApps = !isFinite(payload.layer)
     const bootstrappedUri = bootstrap ? addQueryParams(uri, tour, bootstrapData, layer) : uri
-    const isCleanStart =
+    const areExitingWebAppsToBeOverlaid =
       shallRemoveAllOtherWebApps && (restart || bootstrappedUri !== layers[0]?.uri)
 
     dispatch({
@@ -41,7 +41,7 @@ export function startWebApp(payload, bootstrapData) {
       shallRemoveAllOtherWebApps,
       layer,
       restart,
-      isCleanStart,
+      areExitingWebAppsToBeOverlaid,
       uri: bootstrappedUri,
       tour,
       layerType,
