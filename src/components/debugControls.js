@@ -2,14 +2,7 @@ import { Leva, useControls, button } from "leva"
 import { useDispatch } from "react-redux"
 
 import { reset, startWebApp, stopWebApp } from "../actionCreators"
-import {
-  DEFAULT_LAYER_TYPE,
-  LAYER_TYPES,
-  DEFAULT_LAYER_LEFT,
-  DEFAULT_LAYER_TOP,
-  DEFAULT_LAYER_WIDTH,
-  DEFAULT_LAYER_HEIGHT,
-} from "../layers"
+import { DEFAULT_LAYER, LAYER_TYPES } from "../layers"
 import { DEFAULT_TRANSITION, TRANSITIONS } from "../transitions"
 
 const CUSTOM_URI = "Custom Uri"
@@ -30,7 +23,7 @@ const DebugControls = () => {
       options: [undefined, 0, 1, 2, 3],
     },
     layerType: {
-      value: DEFAULT_LAYER_TYPE,
+      value: DEFAULT_LAYER.TYPE,
       options: Object.values(LAYER_TYPES),
     },
     transition: {
@@ -45,10 +38,10 @@ const DebugControls = () => {
     dimBackground: false,
     restart: true,
     backgroundColor: "rgba(0, 0, 0, 0)",
-    left: DEFAULT_LAYER_LEFT,
-    top: DEFAULT_LAYER_TOP,
-    width: DEFAULT_LAYER_WIDTH,
-    height: DEFAULT_LAYER_HEIGHT,
+    left: DEFAULT_LAYER.LEFT,
+    top: DEFAULT_LAYER.TOP,
+    width: DEFAULT_LAYER.WIDTH,
+    height: DEFAULT_LAYER.HEIGHT,
     "Start Webapp": button((get) => {
       dispatch(
         startWebApp(

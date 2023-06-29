@@ -1,11 +1,5 @@
 import * as types from "./actionTypes"
-import {
-  DEFAULT_LAYER_TYPE,
-  DEFAULT_LAYER_LEFT,
-  DEFAULT_LAYER_TOP,
-  DEFAULT_LAYER_WIDTH,
-  DEFAULT_LAYER_HEIGHT,
-} from "./layers"
+import { DEFAULT_LAYER } from "./layers"
 import { DEFAULT_TRANSITION } from "./transitions"
 
 export function setConnected(connected) {
@@ -18,16 +12,16 @@ export function startWebApp(payload, bootstrapData) {
       uri,
       tour,
       layer = 0,
-      layerType = DEFAULT_LAYER_TYPE,
+      layerType = DEFAULT_LAYER.TYPE,
       bootstrap = true,
       restart = true,
       transition = DEFAULT_TRANSITION,
       dimBackground = false,
       backgroundColor,
-      left = DEFAULT_LAYER_LEFT,
-      top = DEFAULT_LAYER_TOP,
-      width = DEFAULT_LAYER_WIDTH,
-      height = DEFAULT_LAYER_HEIGHT,
+      left = DEFAULT_LAYER.LEFT,
+      top = DEFAULT_LAYER.TOP,
+      width = DEFAULT_LAYER.WIDTH,
+      height = DEFAULT_LAYER.HEIGHT,
     } = payload
 
     const { layers } = getState()
