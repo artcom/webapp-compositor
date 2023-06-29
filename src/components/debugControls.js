@@ -1,9 +1,10 @@
-import { Leva, useControls, button } from "leva"
+import { Leva, useControls, button, LevaInputs } from "leva"
 import { useDispatch } from "react-redux"
 
 import { reset, startWebApp, stopWebApp } from "../actionCreators"
 import { DEFAULT_LAYER, LAYER_TYPES } from "../layers"
 import { DEFAULT_TRANSITION, TRANSITIONS } from "../transitions"
+import { DEFAULT_STYLE } from "./closeButton"
 
 const CUSTOM_URI = "Custom Uri"
 
@@ -26,6 +27,16 @@ const DebugControls = () => {
       value: DEFAULT_LAYER.TYPE,
       options: Object.values(LAYER_TYPES),
     },
+    closeButtonUri: {
+      options: {
+        null: null,
+        "Close Button Data Uri": getWebAppDataUris()["Close Button"],
+      },
+    },
+    closeButtonLeft: { value: DEFAULT_STYLE.LEFT, type: LevaInputs.STRING },
+    closeButtonTop: { value: DEFAULT_STYLE.TOP, type: LevaInputs.STRING },
+    closeButtonWidth: { value: DEFAULT_STYLE.WIDTH, type: LevaInputs.STRING },
+    closeButtonHeight: { value: DEFAULT_STYLE.HEIGHT, type: LevaInputs.STRING },
     transition: {
       value: DEFAULT_TRANSITION,
       options: Object.values(TRANSITIONS),
@@ -38,10 +49,10 @@ const DebugControls = () => {
     dimBackground: false,
     restart: true,
     backgroundColor: "rgba(0, 0, 0, 0)",
-    left: DEFAULT_LAYER.LEFT,
-    top: DEFAULT_LAYER.TOP,
-    width: DEFAULT_LAYER.WIDTH,
-    height: DEFAULT_LAYER.HEIGHT,
+    left: { value: DEFAULT_LAYER.LEFT, type: LevaInputs.STRING },
+    top: { value: DEFAULT_LAYER.TOP, type: LevaInputs.STRING },
+    width: { value: DEFAULT_LAYER.WIDTH, type: LevaInputs.STRING },
+    height: { value: DEFAULT_LAYER.HEIGHT, type: LevaInputs.STRING },
     "Start Webapp": button((get) => {
       dispatch(
         startWebApp(
@@ -51,6 +62,13 @@ const DebugControls = () => {
             transition: get("transition"),
             layer: get("layerIndex"),
             layerType: get("layerType"),
+            closeButton: {
+              uri: get("closeButtonUri"),
+              left: get("closeButtonLeft"),
+              top: get("closeButtonTop"),
+              width: get("closeButtonWidth"),
+              height: get("closeButtonHeight"),
+            },
             dimBackground: get("dimBackground"),
             bootstrap: get("bootstrap"),
             restart: get("restart"),
@@ -76,21 +94,24 @@ const DebugControls = () => {
     }),
   })
 
-  return <Leva />
+  return <Leva theme={{ sizes: { rootWidth: "320px" } }} />
 }
 
 function getWebAppDataUris() {
   const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw}</style></head>`
+  const closeSvg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" id="svg146" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g style="stroke:#000;stroke-width:5"><path d="m 0,0 100,100"/><path d="M 0,100 100,0"/></g></svg>`
   const htmlPage1 = `${head}<div style="width:100vw;height:100vh;margin-top:0;background:blue">WebApp1</div>`
   const htmlPage2 = `${head}<div style="width:90vw;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
   const htmlPage3 = `${head}<div style="width:80vw;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
   const htmlPage4 = `${head}<div style="width:70vw;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
+  const htmlCloseButton = `${head}<div>${closeSvg}</div>`
 
   return {
     "WebApp 1": `data:text/html,${encodeURIComponent(htmlPage1)}`,
     "WebApp 2": `data:text/html,${encodeURIComponent(htmlPage2)}`,
     "WebApp 3": `data:text/html,${encodeURIComponent(htmlPage3)}`,
     "WebApp 4": `data:text/html,${encodeURIComponent(htmlPage4)}`,
+    "Close Button": `data:text/html,${encodeURIComponent(htmlCloseButton)}`,
     [CUSTOM_URI]: CUSTOM_URI,
   }
 }
