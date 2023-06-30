@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 
 import { reset, startWebApp, stopWebApp } from "../actionCreators"
 import { DEFAULT_LAYER, LAYER_TYPES } from "../layers"
-import { DEFAULT_TRANSITION, TRANSITIONS } from "../transitions"
+import { DEFAULT_TRANSITION, API_TRANSITIONS } from "../transitions"
 import { DEFAULT_STYLE } from "./closeButton"
 
 const CUSTOM_URI = "Custom Uri"
@@ -40,7 +40,7 @@ const DebugControls = () => {
     closeButtonHeight: { value: DEFAULT_STYLE.HEIGHT, type: LevaInputs.STRING },
     transition: {
       value: DEFAULT_TRANSITION,
-      options: Object.values(TRANSITIONS),
+      options: Object.values(API_TRANSITIONS),
     },
     bootstrap: true,
     bootstrapData: {

@@ -1,14 +1,14 @@
 import { motion } from "framer-motion"
 import { getZIndices } from "../layers"
 
-import { getTransition, DIMMER } from "../transitions"
+import { getTransition, COMPONENT_TRANSITIONS } from "../transitions"
 
 const Dimmer = ({ index }) => {
   const { dimmerZIndex } = getZIndices(index)
 
   return (
     <motion.div
-      {...getTransition(dimmerZIndex, dimmerZIndex, DIMMER)}
+      {...getTransition(dimmerZIndex, dimmerZIndex, COMPONENT_TRANSITIONS.DIMMER)}
       className={`fullscreen dimmer`}
     ></motion.div>
   )

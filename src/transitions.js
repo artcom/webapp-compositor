@@ -1,5 +1,8 @@
-export const TRANSITIONS = {
+export const COMPONENT_TRANSITIONS = {
   CLOSE_BUTTON: "closeButton",
+  DIMMER: "dimmer",
+}
+export const API_TRANSITIONS = {
   FADE: "fade",
   FADE_TO_BLACK: "fadeToBlack",
   FADE_TO_GRAY: "grayCrossFade",
@@ -8,9 +11,8 @@ export const TRANSITIONS = {
   SCALE_RIGHT: "scaleRight",
   NONE: "none",
 }
-export const DIMMER = "dimmer"
-export const DEFAULT_TRANSITION = TRANSITIONS.FADE
-const WEBAPP_LOAD_COMPLETE = 0.5
+export const DEFAULT_TRANSITION = API_TRANSITIONS.FADE
+const WEBAPP_LOAD_TIMEOUT = 0.5
 const DEFAULT_EASING = [0.215, 0.61, 0.355, 1.0]
 const Z_INDEX_OFFSET = 1000
 
@@ -35,7 +37,7 @@ export function getTransition(zIndexEnter, zIndexExit, animationType) {
 }
 
 const animations = {
-  [TRANSITIONS.FADE_TO_BLACK]: {
+  [API_TRANSITIONS.FADE]: {
     initial: { opacity: 0 },
     enter: {
       opacity: 1,
@@ -46,32 +48,32 @@ const animations = {
     },
     exit: {
       opacity: 0,
-      transition: {
-        duration: 0.5,
-        delay: WEBAPP_LOAD_TIMEOUT,
-      },
-    },
-  },
-
-  [TRANSITIONS.CLOSE_BUTTON]: {
-    initial: { opacity: 0 },
-    enter: {
-      opacity: 1,
       transition: {
         duration: 0.5,
         delay: 1,
       },
     },
+  },
+
+  [API_TRANSITIONS.FADE_TO_BLACK]: {
+    initial: { opacity: 0 },
+    enter: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: WEBAPP_LOAD_TIMEOUT,
+      },
+    },
     exit: {
       opacity: 0,
       transition: {
         duration: 0.5,
-        delay: WEBAPP_LOAD_COMPLETE,
+        delay: WEBAPP_LOAD_TIMEOUT,
       },
     },
   },
 
-  [TRANSITIONS.FADE_TO_GRAY]: {
+  [API_TRANSITIONS.FADE_TO_GRAY]: {
     initial: {
       opacity: 0,
       filter: "grayscale(100%) contrast(3)",
@@ -106,47 +108,25 @@ const animations = {
     },
   },
 
-  [TRANSITIONS.SCROLL_LEFT]: {
-    initial: { x: "-100%" },
+  [API_TRANSITIONS.NONE]: {
+    initial: { opacity: 0 },
     enter: {
-      x: 0,
+      opacity: 1,
       transition: {
-        duration: 1,
-        timing: DEFAULT_EASING,
-        delay: 0.2,
+        duration: 0,
+        delay: 0,
       },
     },
     exit: {
-      x: "-100%",
+      opacity: 0,
       transition: {
-        duration: 1,
-        timing: DEFAULT_EASING,
-        delay: 0.2,
+        duration: 0,
+        delay: 0,
       },
     },
   },
 
-  [TRANSITIONS.SCROLL_RIGHT]: {
-    initial: { x: "100%" },
-    enter: {
-      x: 0,
-      transition: {
-        duration: 1,
-        timing: DEFAULT_EASING,
-        delay: 0.2,
-      },
-    },
-    exit: {
-      x: "100%",
-      transition: {
-        duration: 1,
-        timing: DEFAULT_EASING,
-        delay: 0.2,
-      },
-    },
-  },
-
-  [TRANSITIONS.SCALE_RIGHT]: {
+  [API_TRANSITIONS.SCALE_RIGHT]: {
     initial: {
       opacity: 0,
       scale: 0.3,
@@ -174,54 +154,76 @@ const animations = {
     },
   },
 
-  [TRANSITIONS.FADE]: {
-    initial: { opacity: 0 },
+  [API_TRANSITIONS.SCROLL_LEFT]: {
+    initial: { x: "-100%" },
     enter: {
-      opacity: 1,
+      x: 0,
       transition: {
-        duration: 0.5,
-        delay: WEBAPP_LOAD_COMPLETE,
+        duration: 1,
+        timing: DEFAULT_EASING,
+        delay: 0.2,
       },
     },
     exit: {
-      opacity: 0,
+      x: "-100%",
+      transition: {
+        duration: 1,
+        timing: DEFAULT_EASING,
+        delay: 0.2,
+      },
+    },
+  },
+
+  [API_TRANSITIONS.SCROLL_RIGHT]: {
+    initial: { x: "100%" },
+    enter: {
+      x: 0,
+      transition: {
+        duration: 1,
+        timing: DEFAULT_EASING,
+        delay: 0.2,
+      },
+    },
+    exit: {
+      x: "100%",
+      transition: {
+        duration: 1,
+        timing: DEFAULT_EASING,
+        delay: 0.2,
+      },
+    },
+  },
+
+  [COMPONENT_TRANSITIONS.CLOSE_BUTTON]: {
+    initial: { opacity: 0 },
+    enter: {
+      opacity: 1,
       transition: {
         duration: 0.5,
         delay: 1,
       },
     },
-  },
-
-  [TRANSITIONS.NONE]: {
-    initial: { opacity: 0 },
-    enter: {
-      opacity: 1,
-      transition: {
-        duration: 0,
-        delay: 0,
-      },
-    },
     exit: {
       opacity: 0,
       transition: {
-        duration: 0,
+        duration: 0.5,
         delay: 0,
       },
     },
   },
 
-  [DIMMER]: {
+  [COMPONENT_TRANSITIONS.DIMMER]: {
     initial: { opacity: 0 },
     enter: {
       opacity: 0.4,
       transition: {
         duration: 0.5,
-        delay: WEBAPP_LOAD_COMPLETE,
+        delay: WEBAPP_LOAD_TIMEOUT,
       },
     },
     exit: {
       opacity: 0,
-      transition: { duration: 0.5, delay: WEBAPP_LOAD_COMPLETE },
+      transition: { duration: 0.5, delay: WEBAPP_LOAD_TIMEOUT },
     },
   },
 }
