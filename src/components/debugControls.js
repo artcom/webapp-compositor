@@ -95,7 +95,11 @@ const DebugControls = () => {
     }),
   })
 
-  return <Leva theme={{ sizes: { rootWidth: "320px" } }} />
+  return (
+    <div style={{ position: "relative", transform: "translateX(-200px)", zIndex: 1000 }}>
+      <Leva theme={{ sizes: { rootWidth: "320px" } }} />
+    </div>
+  )
 }
 
 function getWebAppDataUris() {
