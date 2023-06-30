@@ -98,8 +98,8 @@ const DebugControls = () => {
 }
 
 function getWebAppDataUris() {
-  const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw}</style></head>`
-  const closeSvg = `<?xml version="1.0" encoding="UTF-8" standalone="no"?> <svg width="100%" height="100%" viewBox="0 0 100 100" version="1.1" id="svg146" xmlns="http://www.w3.org/2000/svg" xmlns:svg="http://www.w3.org/2000/svg"><g style="stroke:#000;stroke-width:5"><path d="m 0,0 100,100"/><path d="M 0,100 100,0"/></g></svg>`
+  const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw;color:#FFF}</style></head>`
+  const closeSvg = `<?xml> <svg width="100%" height="100%" viewBox="0 0 10 10"><g style="fill:transparent;stroke:#FFF;stroke-width:0.5"><circle cx="5" cy="5" r="4" /><path d="m 3,3 4,4 M 3,7 7,3"/></g></svg>`
   const htmlPage1 = `${head}<div style="width:100vw;height:100vh;margin-top:0;background:blue">WebApp1</div>`
   const htmlPage2 = `${head}<div style="width:90vw;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
   const htmlPage3 = `${head}<div style="width:80vw;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
