@@ -1,4 +1,4 @@
-import { Leva, useControls, button, LevaInputs } from "leva"
+import { Leva, useControls, button, LevaInputs, folder } from "leva"
 import { useDispatch } from "react-redux"
 
 import { reset, startWebApp, stopWebApp } from "../actionCreators"
@@ -27,17 +27,20 @@ const DebugControls = () => {
       value: DEFAULT_LAYER.TYPE,
       options: Object.values(LAYER_TYPES),
     },
-    closeButtonUri: {
-      options: {
-        null: null,
-        "Close Button Data Uri": getWebAppDataUris()["Close Button"],
-        "SVG Uri ": `${window.location.origin}/images/disconnected.svg`,
+    closeButton: folder({
+      isActive: true,
+      url: {
+        options: {
+          null: null,
+          "Close Button Data Uri": getWebAppDataUris()["Close Button"],
+          "SVG Uri ": `${window.location.origin}/images/disconnected.svg`,
+        },
       },
-    },
-    closeButtonLeft: { value: DEFAULT_STYLE.LEFT, type: LevaInputs.STRING },
-    closeButtonTop: { value: DEFAULT_STYLE.TOP, type: LevaInputs.STRING },
-    closeButtonWidth: { value: DEFAULT_STYLE.WIDTH, type: LevaInputs.STRING },
-    closeButtonHeight: { value: DEFAULT_STYLE.HEIGHT, type: LevaInputs.STRING },
+      left: { value: DEFAULT_STYLE.LEFT, type: LevaInputs.STRING },
+      top: { value: DEFAULT_STYLE.TOP, type: LevaInputs.STRING },
+      width: { value: DEFAULT_STYLE.WIDTH, type: LevaInputs.STRING },
+      height: { value: DEFAULT_STYLE.HEIGHT, type: LevaInputs.STRING },
+    }),
     transition: {
       value: DEFAULT_TRANSITION,
       options: Object.values(API_TRANSITIONS),
@@ -63,13 +66,15 @@ const DebugControls = () => {
             transition: get("transition"),
             layer: get("layerIndex"),
             layerType: get("layerType"),
-            closeButton: {
-              uri: get("closeButtonUri"),
-              left: get("closeButtonLeft"),
-              top: get("closeButtonTop"),
-              width: get("closeButtonWidth"),
-              height: get("closeButtonHeight"),
-            },
+            ...(get("closeButton.isActive") && {
+              closeButton: {
+                uri: get("closeButton.url"),
+                left: get("closeButton.left"),
+                top: get("closeButton.top"),
+                width: get("closeButton.width"),
+                height: get("closeButton.height"),
+              },
+            }),
             dimBackground: get("dimBackground"),
             bootstrap: get("bootstrap"),
             restart: get("restart"),

@@ -18,7 +18,7 @@ const App = ({ connected, layers, areExitingWebAppsToBeOverlaid, showDebugContro
 
           <WebApp key={`webApp-${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
 
-          layer.closeButton?.uri && (
+          layer.closeButton && (
             <CloseButton
               key={`closeButton-${index}${layer.uri}${layer.count}`}
               config={layer.closeButton}
