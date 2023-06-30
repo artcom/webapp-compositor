@@ -12,38 +12,29 @@ export const DEFAULT_STYLE = {
   HEIGHT: "10%",
 }
 
-const CloseButton = ({ layer, index }) => {
+const CloseButton = ({ options, index }) => {
   const {
+    uri,
     left = DEFAULT_STYLE.LEFT,
     top = DEFAULT_STYLE.TOP,
     width = DEFAULT_STYLE.WIDTH,
     height = DEFAULT_STYLE.HEIGHT,
-    layerType,
     transition,
-    uri,
-  } = layer
+  } = options
   const style = { top, left, width, height }
-  const Layer = motion[layerType.toLowerCase()]
 
   const { webAppZIndexClosButton } = getZIndices(index)
   const dispatch = useDispatch()
 
   return (
-    <>
-      <Layer
-        src={uri}
-        style={style}
-        className={"fullscreen"}
-        {...getTransition(webAppZIndexClosButton, webAppZIndexClosButton, transition)}
-      />
-      <div
-        onClick={() => {
-          dispatch(stopWebApp({ layer: index }))
-        }}
-        className={"fullscreen"}
-        style={{ ...style, zIndex: webAppZIndexClosButton }}
-      ></div>
-    </>
+    <motion.div
+      className={"closebutton"}
+      style={style}
+      {...getTransition(webAppZIndexClosButton, webAppZIndexClosButton, transition)}
+      onClick={() => dispatch(stopWebApp({ layer: index }))}
+    >
+      <iframe src={uri} />
+    </motion.div>
   )
 }
 
