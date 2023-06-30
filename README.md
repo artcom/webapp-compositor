@@ -24,6 +24,13 @@ This command starts a web application or website with the given `uri`.
   layer?: Number,           // positiv layer index, default: 0
   layerType?: "iframe" | "webview", // layer type used for the webApp, default: "iframe"
   transition?: | "fade" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "fade"
+  closeButton?: Object {    // Object describing a button to close/stop the webapp, default: undefined
+    uri?: String,           // Uri of webapp or asset, default: undefined (transparent button)
+    left?: String,          // left postion of the closeButton, default: "90%"
+    top?: String,           // top postion of the closeButton, default: "0%"
+    width?: String,         // width of the closeButton, default: "10%"
+    height?: String         // height of the closeButton, default: "10%"
+  },
   dimBackground?: Boolean,  // adds a fullscreen dimmed background behind the webApp, default: false
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined
   bootstrap?: Boolean,      // defines wether to append bootstrap params to the uri or not, default: true
@@ -101,6 +108,7 @@ myTour
 If a tour is given on `doStartWebApp` the webApp will receive tour related bootstrap param and will be removed `onTourDelete`.
 
 ## Framer-Motion Installation
+
 Framer-motion is installed using build-files from [this fork](https://github.com/artcom/motion) which incorporate this [pull request](https://github.com/framer/motion/pull/1569) from the [official repository](https://github.com/framer/motion). Since it is a mono-repo with subdirectorys, npm installation uses the online service [https://gitpkg.now.sh](https://gitpkg.now.sh), which creates and streams a tarball of the `framer-motion` subdirectory. (See [package.json](package.json#L25))
 
 ## Development
