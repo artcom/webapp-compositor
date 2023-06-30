@@ -30,6 +30,7 @@ const CloseButton = ({ options, index }) => {
     <motion.div
       className={"closebutton"}
       style={style}
+      whileTap={{ scale: 0.95 }}
       {...getTransition(webAppZIndexClosButton, webAppZIndexClosButton, transition)}
       onClick={() => dispatch(stopWebApp({ layer: index }))}
     >
