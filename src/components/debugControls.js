@@ -31,6 +31,7 @@ const DebugControls = () => {
       options: {
         null: null,
         "Close Button Data Uri": getWebAppDataUris()["Close Button"],
+        "SVG Uri ": `${window.location.origin}/images/disconnected.svg`,
       },
     },
     closeButtonLeft: { value: DEFAULT_STYLE.LEFT, type: LevaInputs.STRING },
