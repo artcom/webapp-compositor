@@ -1,7 +1,7 @@
 import { motion } from "framer-motion"
 
 import { getZIndices } from "../layers"
-import { getTransition } from "../transitions"
+import { TRANSITIONS, getTransition } from "../transitions"
 import { stopWebApp } from "../actionCreators"
 import { useDispatch } from "react-redux"
 
@@ -31,8 +31,8 @@ const CloseButton = ({ options, index }) => {
       className={"closebutton"}
       style={style}
       whileTap={{ scale: 0.95 }}
-      {...getTransition(webAppZIndexClosButton, webAppZIndexClosButton, transition)}
       onClick={() => dispatch(stopWebApp({ layer: index }))}
+      {...getTransition(webAppZIndexEnter, webAppZIndexExit, TRANSITIONS.CLOSE_BUTTON)}
     >
       <iframe src={uri} />
     </motion.div>

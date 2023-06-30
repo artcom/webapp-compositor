@@ -1,4 +1,5 @@
 export const TRANSITIONS = {
+  CLOSE_BUTTON: "closeButton",
   FADE: "fade",
   FADE_TO_BLACK: "fadeToBlack",
   FADE_TO_GRAY: "grayCrossFade",
@@ -40,7 +41,25 @@ const animations = {
       opacity: 1,
       transition: {
         duration: 0.5,
-        delay: WEBAPP_LOAD_COMPLETE,
+        delay: WEBAPP_LOAD_TIMEOUT,
+      },
+    },
+    exit: {
+      opacity: 0,
+      transition: {
+        duration: 0.5,
+        delay: WEBAPP_LOAD_TIMEOUT,
+      },
+    },
+  },
+
+  [TRANSITIONS.CLOSE_BUTTON]: {
+    initial: { opacity: 0 },
+    enter: {
+      opacity: 1,
+      transition: {
+        duration: 0.5,
+        delay: 1,
       },
     },
     exit: {
