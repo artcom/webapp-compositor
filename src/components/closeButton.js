@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux"
 
 export const DEFAULT_STYLE = {
   LEFT: "90%",
-  TOP: "0px",
+  TOP: "0%",
   WIDTH: "10%",
   HEIGHT: "10%",
 }
