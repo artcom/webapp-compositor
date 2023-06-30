@@ -12,24 +12,22 @@ export const DEFAULT_STYLE = {
   HEIGHT: "10%",
 }
 
-const CloseButton = ({ options, index }) => {
+const CloseButton = ({ config, index }) => {
   const {
     uri,
     left = DEFAULT_STYLE.LEFT,
     top = DEFAULT_STYLE.TOP,
     width = DEFAULT_STYLE.WIDTH,
     height = DEFAULT_STYLE.HEIGHT,
-    transition,
-  } = options
-  const style = { top, left, width, height }
+  } = config
 
-  const { webAppZIndexClosButton } = getZIndices(index)
   const dispatch = useDispatch()
+  const { webAppZIndexEnter, webAppZIndexExit } = getZIndices(index)
 
   return (
     <motion.div
-      className={"closebutton"}
-      style={style}
+      className={"closeButton"}
+      style={{ top, left, width, height }}
       whileTap={{ scale: 0.95 }}
       onClick={() => dispatch(stopWebApp({ layer: index }))}
       {...getTransition(webAppZIndexEnter, webAppZIndexExit, COMPONENT_TRANSITIONS.CLOSE_BUTTON)}

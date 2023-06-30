@@ -14,14 +14,14 @@ const App = ({ connected, layers, areExitingWebAppsToBeOverlaid, showDebugContro
       <Status connected={connected} />
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
-          layer.dimBackground && <Dimmer key={`dimmer ${index}`} index={index} />,
+          layer.dimBackground && <Dimmer key={`dimmer-${index}`} index={index} />,
 
-          <WebApp key={`${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
+          <WebApp key={`webApp-${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
 
           layer.closeButton?.uri && (
             <CloseButton
-              key={`${index}${layer.closeButton.uri}${layer.count}`}
-              options={{ transition: layer.transition, ...layer.closeButton }}
+              key={`closeButton-${index}${layer.uri}${layer.count}`}
+              config={layer.closeButton}
               index={index}
             />
           ),
