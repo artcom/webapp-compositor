@@ -10,13 +10,15 @@
   "env": {
     "browser": true
   },
+  "globals": {
+    "process": "readonly"
+  },
   "settings": {
     "react": {
       "version": "detect"
     }
   },
-  "parserOptions":
-  {
+  "parserOptions": {
     "ecmaVersion": 2020
   },
   "rules": {

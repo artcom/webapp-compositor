@@ -12,7 +12,6 @@ import "../css/main.css"
 const urlParams = new URLSearchParams(window.location.search)
 const showDebugControls = urlParams.get("debug") !== null
 
-// eslint-disable-next-line no-undef
 const administrationTopic = process.env.ADMINISTRATION_TOPIC
 
 if (!administrationTopic) {
