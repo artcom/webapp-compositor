@@ -14,7 +14,7 @@ export const DEFAULT_LAYER = {
 export function getZIndices(layer) {
   return {
     dimmerZIndex: layer * 3,
-    webAppZIndexExit: layer * 4 + 1,
-    webAppZIndexEnter: layer * 4 + 2,
+    webAppZIndexExit: layer * 3 + 1,
+    webAppZIndexEnter: layer * 3 + 2,
   }
 }
