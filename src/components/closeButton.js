@@ -1,9 +1,9 @@
 import { motion } from "framer-motion"
+import { useDispatch } from "react-redux"
 
 import { getZIndices } from "../layers"
 import { COMPONENT_TRANSITIONS, getTransition } from "../transitions"
 import { stopWebApp } from "../actionCreators"
-import { useDispatch } from "react-redux"
 
 export const DEFAULT_STYLE = {
   LEFT: "90%",
@@ -12,15 +12,16 @@ export const DEFAULT_STYLE = {
   HEIGHT: "10%",
 }
 
-const CloseButton = ({ config, index }) => {
-  const {
+const CloseButton = ({
+  config: {
     uri,
     left = DEFAULT_STYLE.LEFT,
     top = DEFAULT_STYLE.TOP,
     width = DEFAULT_STYLE.WIDTH,
     height = DEFAULT_STYLE.HEIGHT,
-  } = config
-
+  },
+  index,
+}) => {
   const dispatch = useDispatch()
   const { webAppZIndexEnter, webAppZIndexExit } = getZIndices(index)
 
