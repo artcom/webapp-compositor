@@ -27,7 +27,7 @@ const CloseButton = ({
 
   return (
     <motion.div
-      className={"closeButton"}
+      className="closeButton"
       style={{ top, left, width, height }}
       whileTap={{ scale: 0.95 }}
       onClick={() => dispatch(stopWebApp({ layer: index }))}
