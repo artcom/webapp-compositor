@@ -7,11 +7,10 @@ import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 import CloseButton from "./closeButton"
 
-const App = () => {
+const App = ({ showDebugControls }) => {
   const connected = useSelector((state) => state.connected)
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
-  const showDebugControls = useSelector((state) => state.showDebugControls)
 
   return (
     <>
