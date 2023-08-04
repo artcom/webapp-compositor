@@ -40,6 +40,7 @@ const DebugControls = () => {
       top: { value: DEFAULT_STYLE.TOP, type: LevaInputs.STRING },
       width: { value: DEFAULT_STYLE.WIDTH, type: LevaInputs.STRING },
       height: { value: DEFAULT_STYLE.HEIGHT, type: LevaInputs.STRING },
+      actions: { value: "{}", type: LevaInputs.STRING },
     }),
     transition: {
       value: DEFAULT_TRANSITION,
@@ -73,6 +74,7 @@ const DebugControls = () => {
                 top: get("closeButton.top"),
                 width: get("closeButton.width"),
                 height: get("closeButton.height"),
+                actions: JSON.parse(get("closeButton.actions")),
               },
             }),
             dimBackground: get("dimBackground"),

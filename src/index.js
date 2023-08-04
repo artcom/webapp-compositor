@@ -1,5 +1,7 @@
 import { createRoot } from "react-dom/client"
 import { Provider } from "react-redux"
+import { connectAsync, MqttProvider } from "@artcom/mqtt-topping-react"
+
 import App from "./components/app"
 import createEventHandler from "./deviceEventHandler"
 import store from "./store"
@@ -14,12 +16,25 @@ if (!administrationTopic) {
 }
 
 const bootstrapData = Object.fromEntries(new URLSearchParams(window.location.search).entries())
+const { device, wsBrokerUri } = bootstrapData
 
-createEventHandler(bootstrapData, administrationTopic, store)
+const start = async () => {
+  const mqttClient = await connectAsync(wsBrokerUri, {
+    appId: "WebAppCompositor",
+    deviceId: device,
+  })
+  console.log("mqttClient:", mqttClient)
 
-const root = createRoot(document.getElementById("app"))
-root.render(
-  <Provider store={store}>
-    <App showDebugControls={showDebugControls} />
-  </Provider>
-)
+  createEventHandler(mqttClient, bootstrapData, administrationTopic, store)
+
+  const root = createRoot(document.getElementById("app"))
+  root.render(
+    <Provider store={store}>
+      <MqttProvider mqttClient={mqttClient}>
+        <App showDebugControls={showDebugControls} administrationTopic={administrationTopic} />
+      </MqttProvider>
+    </Provider>
+  )
+}
+
+start()

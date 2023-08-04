@@ -1,51 +1,46 @@
-import { connect } from "@artcom/mqtt-topping"
-
 import { deleteTour, reset, setConnected, startWebApp, stopWebApp } from "./actionCreators"
 
-export default function createEventHandler(bootstrapData, administrationTopic, store) {
-  const { device, deviceTopic, wsBrokerUri } = bootstrapData
+export default function createEventHandler(mqttClient, bootstrapData, administrationTopic, store) {
+  const { deviceTopic } = bootstrapData
 
-  const mqtt = connect(wsBrokerUri, { appId: "WebAppCompositor", deviceId: device })
+  publishDefaultActions()
+  store.dispatch(setConnected(true))
 
-  mqtt.on("connect", () => {
+  mqttClient.on("connect", () => {
     store.dispatch(setConnected(true))
   })
 
-  mqtt.once("connect", () => {
-    publishDefaultActions()
-  })
-
-  mqtt.on("close", () => {
+  mqttClient.on("close", () => {
     store.dispatch(setConnected(false))
   })
 
-  mqtt.on("error", () => {
+  mqttClient.on("error", () => {
     store.dispatch(setConnected(false))
   })
 
-  mqtt.subscribe(`${deviceTopic}/doReset`, () => {
+  mqttClient.subscribe(`${deviceTopic}/doReset`, () => {
     store.dispatch(reset())
     publishDefaultActions()
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStartApp`, () => {
+  mqttClient.subscribe(`${deviceTopic}/doStartApp`, () => {
     store.dispatch(reset())
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStartWebApp`, (payload) => {
+  mqttClient.subscribe(`${deviceTopic}/doStartWebApp`, (payload) => {
     store.dispatch(startWebApp(payload, bootstrapData))
   })
 
-  mqtt.subscribe(`${deviceTopic}/doStopWebApp`, (payload) => {
+  mqttClient.subscribe(`${deviceTopic}/doStopWebApp`, (payload) => {
     store.dispatch(stopWebApp(payload))
   })
 
-  mqtt.subscribe(`${administrationTopic}/onTourDelete`, (tour) => {
+  mqttClient.subscribe(`${administrationTopic}/onTourDelete`, (tour) => {
     store.dispatch(deleteTour(tour))
   })
 
   function publishDefaultActions() {
-    mqtt.publish(`${administrationTopic}/doExecuteActionList`, {
+    mqttClient.publish(`${administrationTopic}/doExecuteActionList`, {
       topic: `${deviceTopic}/defaultActions`,
     })
   }

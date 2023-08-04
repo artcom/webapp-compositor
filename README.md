@@ -23,13 +23,14 @@ This command starts a web application or website with the given `uri`.
   tour?: String,            // the tour the webApp belongs to, see below
   layer?: Number,           // positiv layer index, default: 0
   layerType?: "iframe" | "webview", // layer type used for the webApp, default: "iframe"
-  transition?: | "fade" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "fade"
+  transition?: "fade" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "fade"
   closeButton?: Object {    // Object describing a button to close/stop the webapp, default: undefined
     uri?: String,           // Uri of webapp or asset, default: undefined (transparent button)
     left?: String,          // left postion of the closeButton, default: "90%"
     top?: String,           // top postion of the closeButton, default: "0%"
     width?: String,         // width of the closeButton, default: "10%"
-    height?: String         // height of the closeButton, default: "10%"
+    height?: String,        // height of the closeButton, default: "10%"
+    actions?: Object | Array // an ActionList (see ActionList Example) to be executed by an action-list-executor, default: undefined
   },
   dimBackground?: Boolean,  // adds a fullscreen dimmed background behind the webApp, default: false
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined

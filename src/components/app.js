@@ -7,7 +7,7 @@ import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 import CloseButton from "./closeButton"
 
-const App = ({ showDebugControls }) => {
+const App = ({ showDebugControls, administrationTopic }) => {
   const connected = useSelector((state) => state.connected)
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
@@ -25,6 +25,7 @@ const App = ({ showDebugControls }) => {
               key={`closeButton-${index}${layer.uri}${layer.count}`}
               config={layer.closeButton}
               index={index}
+              administrationTopic={administrationTopic}
             />
           ),
         ])}
