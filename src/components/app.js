@@ -25,6 +25,7 @@ const App = ({ showDebugControls, administrationTopic }) => {
               key={`closeButton-${index}${layer.uri}${layer.count}`}
               config={layer.closeButton}
               index={index}
+              layer={layer}
               administrationTopic={administrationTopic}
             />
           ),
