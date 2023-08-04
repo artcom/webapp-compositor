@@ -10,7 +10,7 @@ const Dimmer = ({ index }) => {
     <motion.div
       {...getTransition(dimmerZIndex, dimmerZIndex, COMPONENT_TRANSITIONS.DIMMER)}
       className={`fullscreen dimmer`}
-    ></motion.div>
+    />
   )
 }
 

@@ -1,4 +1,4 @@
-import { connect } from "react-redux"
+import { useSelector } from "react-redux"
 import { AnimatePresence } from "framer-motion"
 
 import Status from "./status"
@@ -7,7 +7,11 @@ import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 import CloseButton from "./closeButton"
 
-const App = ({ connected, layers, areExitingWebAppsToBeOverlaid, showDebugControls }) => {
+const App = ({ showDebugControls }) => {
+  const connected = useSelector((state) => state.connected)
+  const layers = useSelector((state) => state.layers)
+  const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
+
   return (
     <>
       {showDebugControls && <DebugControls />}
@@ -15,9 +19,7 @@ const App = ({ connected, layers, areExitingWebAppsToBeOverlaid, showDebugContro
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
           layer.dimBackground && <Dimmer key={`dimmer-${index}`} index={index} />,
-
           <WebApp key={`webApp-${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
-
           layer.closeButton && (
             <CloseButton
               key={`closeButton-${index}${layer.uri}${layer.count}`}
@@ -31,8 +33,4 @@ const App = ({ connected, layers, areExitingWebAppsToBeOverlaid, showDebugContro
   )
 }
 
-export default connect(({ connected, layers, areExitingWebAppsToBeOverlaid }) => ({
-  connected,
-  layers,
-  areExitingWebAppsToBeOverlaid,
-}))(App)
+export default App
