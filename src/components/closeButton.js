@@ -3,8 +3,6 @@ import { MqttContext } from "@artcom/mqtt-topping-react"
 import { motion } from "framer-motion"
 import { useDispatch } from "react-redux"
 
-import { getZIndices } from "../layers"
-import { COMPONENT_TRANSITIONS, getTransition } from "../transitions"
 import { stopWebApp } from "../actionCreators"
 
 export const DEFAULT_STYLE = {
@@ -23,15 +21,11 @@ const CloseButton = ({
     width = DEFAULT_STYLE.WIDTH,
     height = DEFAULT_STYLE.HEIGHT,
   },
-  layer,
   index,
   administrationTopic,
 }) => {
   const dispatch = useDispatch()
-  const { webAppZIndexEnter, webAppZIndexExit } = getZIndices(index)
   const { publish } = useContext(MqttContext)
-
-  const layerStyle = { top: layer.top, left: layer.left, width: layer.width, height: layer.height }
 
   const onClickHandler = () => {
     dispatch(stopWebApp({ layer: index }))
@@ -44,18 +38,12 @@ const CloseButton = ({
 
   return (
     <motion.div
-      style={layerStyle}
-      className="fullscreen"
-      {...getTransition(webAppZIndexEnter, webAppZIndexExit, COMPONENT_TRANSITIONS.CLOSE_BUTTON)}
+      className="closeButton"
+      style={{ top, left, width, height }}
+      whileTap={{ scale: 0.95 }}
+      onClick={onClickHandler}
     >
-      <motion.div
-        className="closeButton"
-        style={{ top, left, width, height }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClickHandler}
-      >
-        <iframe src={uri} />
-      </motion.div>
+      <iframe src={uri} />
     </motion.div>
   )
 }

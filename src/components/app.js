@@ -5,7 +5,6 @@ import Status from "./status"
 import DebugControls from "./debugControls"
 import Dimmer from "./dimmer"
 import WebApp from "./webApp"
-import CloseButton from "./closeButton"
 
 const App = ({ showDebugControls, administrationTopic }) => {
   const connected = useSelector((state) => state.connected)
@@ -19,16 +18,12 @@ const App = ({ showDebugControls, administrationTopic }) => {
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
           layer.dimBackground && <Dimmer key={`dimmer-${index}`} index={index} />,
-          <WebApp key={`webApp-${index}${layer.uri}${layer.count}`} layer={layer} index={index} />,
-          layer.closeButton && (
-            <CloseButton
-              key={`closeButton-${index}${layer.uri}${layer.count}`}
-              config={layer.closeButton}
-              index={index}
-              layer={layer}
-              administrationTopic={administrationTopic}
-            />
-          ),
+          <WebApp
+            key={`webApp-${index}${layer.uri}${layer.count}`}
+            layer={layer}
+            index={index}
+            administrationTopic={administrationTopic}
+          />,
         ])}
       </AnimatePresence>
     </>
