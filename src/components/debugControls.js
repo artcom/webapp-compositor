@@ -112,10 +112,10 @@ const DebugControls = () => {
 function getWebAppDataUris() {
   const head = `<head><style>body,html{margin:0;overflow:hidden;font-size:5vw;color:#FFF}</style></head>`
   const closeSvg = `<?xml> <svg width="100%" height="100%" viewBox="0 0 10 10"><g style="fill:transparent;stroke:#FFF;stroke-width:0.5"><circle cx="5" cy="5" r="4" /><path d="m 3,3 4,4 M 3,7 7,3"/></g></svg>`
-  const htmlPage1 = `${head}<div style="width:100vw;height:100vh;margin-top:0;background:blue">WebApp1</div>`
-  const htmlPage2 = `${head}<div style="width:90vw;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
-  const htmlPage3 = `${head}<div style="width:80vw;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
-  const htmlPage4 = `${head}<div style="width:70vw;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
+  const htmlPage1 = `${head}<div onclick="console.log('click1')" style="width:100vw;height:100vh;margin-top:0;background:blue">WebApp1</div>`
+  const htmlPage2 = `${head}<div onclick="console.log('click2')" style="width:90vw;height:90vh;margin-top:10vh;background:red">WebApp2</div>`
+  const htmlPage3 = `${head}<div onclick="console.log('click3')" style="width:80vw;height:80vh;margin-top:20vh;background:green">WebApp3</div>`
+  const htmlPage4 = `${head}<div onclick="console.log('click4')" style="width:70vw;height:70vh;margin-top:30vh;background:orange">WebApp4</div>`
   const htmlCloseButton = `${head}<div>${closeSvg}</div>`
 
   return {
