@@ -24,6 +24,10 @@ body {
   z-index: 0;
 }
 
+.overflowVisible {
+  overflow: visible;
+}
+
 .closeButton {
   position: absolute;
   transform-origin: 50% 50%;

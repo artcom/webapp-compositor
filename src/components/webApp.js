@@ -13,7 +13,7 @@ const WebApp = ({ layer, index, administrationTopic }) => {
   return (
     <motion.div
       style={style}
-      className={"fullscreen"}
+      className={"fullscreen overflowVisible"}
       {...getTransition(webAppZIndexEnter, webAppZIndexExit, transition)}
     >
       <Layer src={uri} className={"fullscreen"} allow={"camera *; microphone *"} />
