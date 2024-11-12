@@ -5,6 +5,10 @@ import * as reducers from "./reducers"
 
 const logger = createLogger({
   collapsed: true,
+  actionTransformer: (action) => {
+    console.log(JSON.stringify(action))
+    return action
+  },
 })
 
 const store = configureStore({
