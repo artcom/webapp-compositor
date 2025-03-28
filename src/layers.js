@@ -1,6 +1,7 @@
 export const LAYER_TYPES = {
   I_FRAME: "iframe",
   WEB_VIEW: "webView",
+  SHADOW_DOM: "shadowdom",
 }
 
 export const DEFAULT_LAYER = {
