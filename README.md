@@ -2,7 +2,7 @@
 
 The compositor acts as a window manager for webApps on multiple layers with an MQTT API. WebApps can be started with specific enter/exit transitions as well as individual geometry for custom overlay scenarios.
 
-Note: On startup the compositor publishes `${administrationTopic}/doExecuteActionList`: `${deviceTopic}/defaultActions` to setup itself.
+Note: On startup the compositor publishes `${administrationTopic}/doExecuteActionList`: `${deviceTopic}/defaultActions` to setup itself, which has to be defined in the configuration.
 
 ## Run
 

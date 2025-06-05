@@ -41,7 +41,7 @@ export default function createEventHandler(mqttClient, bootstrapData, administra
 
   function publishDefaultActions() {
     mqttClient.publish(`${administrationTopic}/doExecuteActionList`, {
-      topic: `${deviceTopic}/defaultActions`,
+      config: `${deviceTopic}/defaultActions`,
     })
   }
 }
