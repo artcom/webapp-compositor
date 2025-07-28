@@ -1,19 +1,18 @@
 import { useEffect, useRef } from "react"
 
-export default function DebugView({ connected, hostname, resolution, brokerState }) {
+export default function DebugView({ connected, bootstrapData }) {
+  const { device } = bootstrapData || {}
   const canvasRef = useRef(null)
 
   useEffect(() => {
     const canvas = canvasRef.current
     const ctx = canvas.getContext("2d")
 
-    // Set canvas dimensions
     const width = window.innerWidth
     const height = window.innerHeight
     canvas.width = width
     canvas.height = height
 
-    // Draw color bars
     const colors = ["white", "yellow", "cyan", "green", "magenta", "red", "blue", "black"]
     const barWidth = width / colors.length
     colors.forEach((color, i) => {
@@ -21,7 +20,6 @@ export default function DebugView({ connected, hostname, resolution, brokerState
       ctx.fillRect(i * barWidth, 0, barWidth, height / 2)
     })
 
-    // Draw a circle in the center
     const centerX = width / 2
     const centerY = height / 2
     const radius = Math.min(width, height) / 4
@@ -31,7 +29,6 @@ export default function DebugView({ connected, hostname, resolution, brokerState
     ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI)
     ctx.stroke()
 
-    // Draw grid lines
     ctx.strokeStyle = "gray"
     ctx.lineWidth = 1
     for (let i = 0; i < width; i += 50) {
@@ -47,19 +44,20 @@ export default function DebugView({ connected, hostname, resolution, brokerState
       ctx.stroke()
     }
 
-    // Draw text overlay
+    const screenDiagonal = Math.sqrt(width ** 2 + height ** 2)
+    const fontSize = screenDiagonal * 0.02
     ctx.fillStyle = "white"
-    ctx.font = "16px Arial"
+    ctx.font = `${fontSize}px Arial`
+
     const textLines = [
-      `Hostname: ${hostname || "Unknown"}`,
-      `Resolution: ${resolution || "Unknown"}`,
-      `Broker State: ${brokerState || "Unknown"}`,
-      `Connected: ${connected ? "Yes" : "No"}`,
+      `${device || "Unknown"}`,
+      `${screen.width}x${screen.height}`,
+      `Broker: ${connected || "Unknown"}`,
     ]
     textLines.forEach((text, index) => {
-      ctx.fillText(text, 10, height - 100 + index * 20)
+      ctx.fillText(text, 10, height / 2 + 100 + index * (fontSize + 5))
     })
-  }, [connected, hostname, resolution, brokerState])
+  }, [connected, device])
 
   return (
     <div>
