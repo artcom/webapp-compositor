@@ -31,7 +31,11 @@ const start = async () => {
   root.render(
     <Provider store={store}>
       <MqttProvider mqttClient={mqttClient}>
-        <App showDebugControls={showDebugControls} administrationTopic={administrationTopic} />
+        <App
+          bootstrapData={bootstrapData}
+          showDebugControls={showDebugControls}
+          administrationTopic={administrationTopic}
+        />
       </MqttProvider>
     </Provider>
   )
