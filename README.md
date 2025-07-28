@@ -9,6 +9,10 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 - Run in development: `ADMINISTRATION_TOPIC=<administration-topic> npm run watch`
 - Start the application: `PORT=5000 ADMINISTRATION_TOPIC=<administration-topic> npm start`
 
+### Start app local with staging environment
+
+ADMINISTRATION_TOPIC=debugTopic npm run watch http://localhost:8080/?wsBrokerUri=ws://broker.backend.staging.t-gallery:8888/mqtt&httpBrokerUri=http://broker.backend.staging.t-gallery:8080&debug
+
 ## API
 
 ### devices/\<device\>/doStartWebApp
