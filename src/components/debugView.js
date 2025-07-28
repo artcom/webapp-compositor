@@ -51,11 +51,25 @@ export default function DebugView({ connected, bootstrapData }) {
 
     const textLines = [
       `${device || "Unknown"}`,
-      `${screen.width}x${screen.height}`,
+      `Device:${screen.width}x${screen.height}`,
+      `Window: ${width}x${height}`,
+
       `Broker: ${connected || "Unknown"}`,
     ]
     textLines.forEach((text, index) => {
-      ctx.fillText(text, 10, height / 2 + 100 + index * (fontSize + 5))
+      const x = 10
+      const y = height / 2 + 100 + index * (fontSize + 5)
+
+      // Measure text width
+      const textWidth = ctx.measureText(text).width
+
+      // Draw black background rectangle
+      ctx.fillStyle = "black"
+      ctx.fillRect(x - 5, y - fontSize, textWidth + 10, fontSize + 5)
+
+      // Draw white text
+      ctx.fillStyle = "white"
+      ctx.fillText(text, x, y)
     })
   }, [connected, device])
 
