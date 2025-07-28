@@ -49,7 +49,7 @@ const DebugControls = () => {
     bootstrap: true,
     bootstrapData: {
       value: "{}",
-      hint: "JSON data to pass to the webApp",
+      //hint: "JSON data to pass to the webApp",
     },
     dimBackground: false,
     restart: true,
