@@ -7,16 +7,19 @@ import DebugControls from "./debugControls"
 import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 
-const App = ({ showDebugControls, administrationTopic }) => {
+const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
   const connected = useSelector((state) => state.connected)
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
-
   return (
     <>
-      {showDebugControls && <DebugControls />}
-      <Status connected={connected} />
-      <DebugView connected={connected} />
+      {showDebugControls && (
+        <>
+          <DebugControls />
+          <DebugView connected={connected} bootstrapData={bootstrapData} />
+        </>
+      )}
+      {!connected && <Status connected={connected} />}
 
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
