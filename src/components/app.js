@@ -2,6 +2,7 @@ import { useSelector } from "react-redux"
 import { AnimatePresence } from "framer-motion"
 
 import Status from "./status"
+import DebugView from "./debugView"
 import DebugControls from "./debugControls"
 import Dimmer from "./dimmer"
 import WebApp from "./webApp"
@@ -15,6 +16,8 @@ const App = ({ showDebugControls, administrationTopic }) => {
     <>
       {showDebugControls && <DebugControls />}
       <Status connected={connected} />
+      <DebugView connected={connected} />
+
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
           layer.dimBackground && <Dimmer key={`dimmer-${index}`} index={index} />,
