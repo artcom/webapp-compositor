@@ -55,7 +55,7 @@ export default function DebugView({ connected, bootstrapData }) {
   }
 
   function drawGrid(ctx, width, height) {
-    ctx.strokeStyle = "gray"
+    ctx.strokeStyle = "rgba(128, 128, 128, 0.5)"
     ctx.lineWidth = 1
     for (let i = 0; i < width; i += 50) {
       ctx.beginPath()
@@ -64,6 +64,21 @@ export default function DebugView({ connected, bootstrapData }) {
       ctx.stroke()
     }
     for (let i = 0; i < height; i += 50) {
+      ctx.beginPath()
+      ctx.moveTo(0, i)
+      ctx.lineTo(width, i)
+      ctx.stroke()
+    }
+
+    ctx.strokeStyle = "rgba(128, 128, 128, 0.5)"
+    ctx.lineWidth = 0.5
+    for (let i = 0; i < width; i += 10) {
+      ctx.beginPath()
+      ctx.moveTo(i, 0)
+      ctx.lineTo(i, height)
+      ctx.stroke()
+    }
+    for (let i = 0; i < height; i += 10) {
       ctx.beginPath()
       ctx.moveTo(0, i)
       ctx.lineTo(width, i)
