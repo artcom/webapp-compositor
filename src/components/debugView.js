@@ -71,7 +71,7 @@ export default function DebugView({ connected, bootstrapData }) {
     }
   }
 
-  function drawInfoText(ctx, width, height, fontSize, device) {
+  function drawInfoText(ctx, width, height, fontSize, device, connected) {
     ctx.fillStyle = "white"
     ctx.font = `${fontSize}px Arial`
 
@@ -82,6 +82,7 @@ export default function DebugView({ connected, bootstrapData }) {
       }`,
       `Screen Resolution: ${screen.width}x${screen.height}`,
       `Viewport: ${width}x${height}`,
+      `Broker Connected: ${connected ? "Yes" : "No"}`,
     ]
 
     textLines.forEach((text, index) => {
