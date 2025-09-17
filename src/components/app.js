@@ -1,5 +1,7 @@
 import { useSelector } from "react-redux"
 import { AnimatePresence } from "framer-motion"
+import { useState, useCallback } from "react"
+import { useMqttSubscribe } from "@artcom/mqtt-topping-react"
 
 import Status from "./status"
 import DebugView from "./debugView"
@@ -8,18 +10,24 @@ import Dimmer from "./dimmer"
 import WebApp from "./webApp"
 
 const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
+  const [debugView, showDebugView] = useState(false)
   const connected = useSelector((state) => state.connected)
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
+  console.log(`devices/${bootstrapData.device}/doShowDebugView`)
+
+  useMqttSubscribe(
+    `devices/${bootstrapData.device}/doShowDebugView`,
+    useCallback((payload) => {
+      console.log(payload)
+      showDebugView(payload)
+    }, [])
+  )
   return (
     <>
-      {showDebugControls && (
-        <>
-          <DebugControls />
-          <DebugView connected={connected} bootstrapData={bootstrapData} />
-        </>
-      )}
-      {!connected && <Status connected={connected} />}
+      {debugView && <DebugView connected={connected} bootstrapData={bootstrapData} />}
+      {showDebugControls && <DebugControls />}
+      {!debugView && <Status connected={connected} />}
 
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
