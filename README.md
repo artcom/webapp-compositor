@@ -11,7 +11,8 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 
 ### Start app local with staging environment
 
-ADMINISTRATION_TOPIC=debugTopic npm run watch http://localhost:8080/?wsBrokerUri=ws://broker.backend.staging.t-gallery:8888/mqtt&httpBrokerUri=http://broker.backend.staging.t-gallery:8080&debug
+ADMINISTRATION_TOPIC=debugTopic npm run watch
+http://localhost:8080/?wsBrokerUri=ws://broker.backend.staging.t-gallery:8888/mqtt&httpBrokerUri=http://broker.backend.staging.t-gallery:8080&debug
 
 ## API
 
@@ -118,6 +119,8 @@ Framer-motion is installed using build-files from [this fork](https://github.com
 
 ## Development
 
-Dubugging controls ([leva](https://github.com/pmndrs/leva)) can be activated using the URL query parameter `?debug`
+Dubugging controls ([leva](https://github.com/pmndrs/leva)) can be activated using the URL query parameter `?controls`
+
+DebugView can be toggled with topic `devices/<device>/doShowDebugView` set to true
 
 e.g. `http://localhost:8080/?wsBrokerUri=ws://localhost:9001&debug`
