@@ -9,7 +9,7 @@ import "../css/main.css"
 
 const start = async () => {
   const urlParams = new URLSearchParams(window.location.search)
-  const showDebugControls = urlParams.get("debug") !== null
+  const showDebugControls = urlParams.get("controls") !== null
   const administrationTopic = process.env.ADMINISTRATION_TOPIC
 
   if (!administrationTopic) {
