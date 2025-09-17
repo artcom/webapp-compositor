@@ -1,8 +1,9 @@
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 
 export default function DebugView({ connected, bootstrapData }) {
   const { device } = bootstrapData || {}
   const canvasRef = useRef(null)
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -19,8 +20,18 @@ export default function DebugView({ connected, bootstrapData }) {
     drawColorBars(ctx, width, height)
     drawCircle(ctx, width, height)
     drawGrid(ctx, width, height)
-    drawInfoText(ctx, width, height, fontSize, device)
-    drawPositionText(ctx, height, fontSize)
+    drawInfoText(ctx, width, height, fontSize, device, connected)
+
+    // Mousemove event to track cursor position
+    const handleMouseMove = (event) => {
+      setCursorPosition({ x: event.clientX, y: event.clientY })
+    }
+
+    canvas.addEventListener("mousemove", handleMouseMove)
+
+    return () => {
+      canvas.removeEventListener("mousemove", handleMouseMove)
+    }
   }, [connected, bootstrapData])
 
   function drawColorBars(ctx, width, height) {
@@ -87,19 +98,24 @@ export default function DebugView({ connected, bootstrapData }) {
     })
   }
 
-  function drawPositionText(ctx, height, fontSize) {
-    const leftMiddleX = 5
-    const leftMiddleY = height / 2
-    const smallFontSize = fontSize * 0.5
-
-    ctx.fillStyle = "black"
-    ctx.font = `${smallFontSize}px Arial`
-    ctx.fillText(
-      `x: ${leftMiddleX}, y: ${Math.floor(leftMiddleY)}`,
-      leftMiddleX + 5,
-      leftMiddleY - 5
-    )
-  }
-
-  return <canvas ref={canvasRef} />
+  return (
+    <div>
+      <canvas ref={canvasRef} />
+      <div
+        style={{
+          position: "absolute",
+          top: cursorPosition.y + 10,
+          left: cursorPosition.x + 10,
+          backgroundColor: "black",
+          color: "white",
+          padding: "2px 5px",
+          fontSize: "18px",
+          borderRadius: "3px",
+          pointerEvents: "none",
+        }}
+      >
+        x: {cursorPosition.x}, y: {cursorPosition.y}
+      </div>
+    </div>
+  )
 }
