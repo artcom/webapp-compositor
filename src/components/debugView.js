@@ -4,6 +4,7 @@ export default function DebugView({ connected, bootstrapData }) {
   const { device } = bootstrapData || {}
   const canvasRef = useRef(null)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
+  let fontSize = 16
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -15,7 +16,7 @@ export default function DebugView({ connected, bootstrapData }) {
     canvas.height = height
 
     const screenDiagonal = Math.sqrt(width ** 2 + height ** 2)
-    const fontSize = screenDiagonal * 0.02
+    fontSize = screenDiagonal * 0.02
 
     drawColorBars(ctx, width, height)
     drawCircle(ctx, width, height)
@@ -125,7 +126,7 @@ export default function DebugView({ connected, bootstrapData }) {
           backgroundColor: "black",
           color: "white",
           padding: "2px 5px",
-          fontSize: "18px",
+          fontSize: fontSize,
           borderRadius: "3px",
           pointerEvents: "none",
         }}
