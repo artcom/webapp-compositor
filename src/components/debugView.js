@@ -23,7 +23,6 @@ export default function DebugView({ connected, bootstrapData }) {
     drawGrid(ctx, width, height)
     drawInfoText(ctx, width, height, fontSize, device, connected)
 
-    // Mousemove event to track cursor position
     const handleMouseMove = (event) => {
       setCursorPosition({ x: event.clientX, y: event.clientY })
     }
