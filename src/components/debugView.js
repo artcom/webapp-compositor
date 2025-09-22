@@ -125,7 +125,7 @@ export default function DebugView({ connected, bootstrapData }) {
           backgroundColor: "black",
           color: "white",
           padding: "2px 5px",
-          fontSize: fontSize,
+          fontSize: "20px",
           borderRadius: "3px",
           pointerEvents: "none",
         }}
