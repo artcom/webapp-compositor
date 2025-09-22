@@ -18,7 +18,6 @@ const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
   useMqttSubscribe(
     `tGallery/debug`,
     useCallback((payload) => {
-      console.log(payload)
       showDebugView(payload)
     }, [])
   )
