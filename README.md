@@ -121,6 +121,6 @@ Framer-motion is installed using build-files from [this fork](https://github.com
 
 Dubugging controls ([leva](https://github.com/pmndrs/leva)) can be activated using the URL query parameter `?controls`
 
-DebugView can be toggled with topic `devices/<device>/doShowDebugView` set to true
+DebugView can be toggled with topic `tGallery/debug` set to true
 
 e.g. `http://localhost:8080/?wsBrokerUri=ws://localhost:9001&debug`

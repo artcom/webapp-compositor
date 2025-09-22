@@ -14,10 +14,9 @@ const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
   const connected = useSelector((state) => state.connected)
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
-  console.log(`devices/${bootstrapData.device}/doShowDebugView`)
 
   useMqttSubscribe(
-    `devices/${bootstrapData.device}/doShowDebugView`,
+    `tGallery/debug`,
     useCallback((payload) => {
       console.log(payload)
       showDebugView(payload)
