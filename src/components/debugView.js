@@ -97,6 +97,7 @@ export default function DebugView({ connected, bootstrapData }) {
       }`,
       `Screen Resolution: ${screen.width}x${screen.height}`,
       `Viewport: ${width}x${height}`,
+      `Window Position: ${window.screenX}, ${window.screenY}`,
       `Broker Connected: ${connected ? "Yes" : "No"}`,
     ]
 
