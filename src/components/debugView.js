@@ -110,7 +110,11 @@ export default function DebugView({ connected, bootstrapData }) {
       ctx.fillStyle = "black"
       ctx.fillRect(x - 5, y - fontSize, textWidth + 10, fontSize + 5)
 
-      ctx.fillStyle = "white"
+      if (index == 5) {
+        ctx.fillStyle = connected ? "lightgreen" : "red"
+      } else {
+        ctx.fillStyle = "white"
+      }
       ctx.fillText(text, x, y)
     })
   }
