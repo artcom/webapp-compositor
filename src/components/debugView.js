@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react"
+import "../../css/debugView.css" // Import external CSS file
 
 export default function DebugView({ connected, bootstrapData }) {
   const { device } = bootstrapData || {}
   const canvasRef = useRef(null)
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 })
-  let fontSize = 16
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -16,7 +16,7 @@ export default function DebugView({ connected, bootstrapData }) {
     canvas.height = height
 
     const screenDiagonal = Math.sqrt(width ** 2 + height ** 2)
-    fontSize = screenDiagonal * 0.02
+    const fontSize = screenDiagonal * 0.02
 
     drawColorBars(ctx, width, height)
     drawCircle(ctx, width, height)
@@ -70,6 +70,7 @@ export default function DebugView({ connected, bootstrapData }) {
       ctx.stroke()
     }
 
+    // finer grid lines
     ctx.strokeStyle = "rgba(128, 128, 128, 0.5)"
     ctx.lineWidth = 0.5
     for (let i = 0; i < width; i += 10) {
@@ -110,40 +111,20 @@ export default function DebugView({ connected, bootstrapData }) {
       ctx.fillStyle = "black"
       ctx.fillRect(x - 5, y - fontSize, textWidth + 10, fontSize + 5)
 
-      if (index == 5) {
-        ctx.fillStyle = connected ? "lightgreen" : "red"
-      } else {
-        ctx.fillStyle = "white"
-      }
+      ctx.fillStyle = index === 5 ? (connected ? "lightgreen" : "red") : "white"
       ctx.fillText(text, x, y)
     })
   }
 
   return (
-    <div>
+    <div className="debug-container">
+      <div className="green-border" />
+      <canvas ref={canvasRef} className="debug-canvas" />
       <div
+        className="cursor-position"
         style={{
-          position: "absolute",
-          border: "10px solid green",
-          height: "100vh",
-          width: "100vw",
-          boxSizing: "border-box",
-          pointerEvents: "none",
-        }}
-      />
-
-      <canvas ref={canvasRef} />
-      <div
-        style={{
-          position: "absolute",
           top: cursorPosition.y + 10,
           left: cursorPosition.x + 10,
-          backgroundColor: "black",
-          color: "white",
-          padding: "2px 5px",
-          fontSize: "20px",
-          borderRadius: "3px",
-          pointerEvents: "none",
         }}
       >
         x: {cursorPosition.x}, y: {cursorPosition.y}
