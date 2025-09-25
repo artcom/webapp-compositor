@@ -31,6 +31,10 @@ export default function DebugView({ connected, bootstrapData }) {
     }
   }, [connected, bootstrapData])
 
+  const calculateFontSize = () => {
+    return Math.max(Math.min(screen.width, screen.height) * 0.04, 30)
+  }
+
   function drawColorBars(ctx, width, height) {
     const colors = ["white", "yellow", "cyan", "green", "magenta", "red", "blue", "black"]
     const barWidth = width / colors.length
@@ -87,7 +91,7 @@ export default function DebugView({ connected, bootstrapData }) {
   function drawInfoText(ctx, width, height, device, connected) {
     ctx.fillStyle = "white"
 
-    const responsiveFontSize = Math.max(Math.min(screen.width, screen.height) * 0.04, 30)
+    const responsiveFontSize = calculateFontSize()
     const lineSpacing = responsiveFontSize + 10
 
     ctx.font = `${responsiveFontSize}px Arial`
@@ -159,7 +163,7 @@ export default function DebugView({ connected, bootstrapData }) {
       <div
         className="cursor-position"
         style={{
-          fontSize: Math.max(Math.min(screen.width, screen.height) * 0.04, 30),
+          fontSize: calculateFontSize(),
           top: cursorPosition.y + 10,
           left: cursorPosition.x + 10,
         }}
