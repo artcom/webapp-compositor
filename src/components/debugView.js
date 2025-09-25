@@ -117,6 +117,17 @@ export default function DebugView({ connected, bootstrapData }) {
 
   return (
     <div>
+      <div
+        style={{
+          position: "absolute",
+          border: "10px solid green",
+          height: "100vh",
+          width: "100vw",
+          boxSizing: "border-box",
+          pointerEvents: "none",
+        }}
+      />
+
       <canvas ref={canvasRef} />
       <div
         style={{
