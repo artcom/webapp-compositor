@@ -21,7 +21,7 @@ export default function DebugView({ connected, bootstrapData }) {
     drawColorBars(ctx, width, height)
     drawCircle(ctx, width, height)
     drawGrid(ctx, width, height)
-    drawInfoText(ctx, width, height, fontSize, device, connected)
+    drawInfoText(ctx, width, height, device, connected)
 
     const handleMouseMove = (event) => {
       setCursorPosition({ x: event.clientX, y: event.clientY })
