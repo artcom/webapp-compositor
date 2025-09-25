@@ -87,9 +87,13 @@ export default function DebugView({ connected, bootstrapData }) {
     }
   }
 
-  function drawInfoText(ctx, width, height, fontSize, device, connected) {
+  function drawInfoText(ctx, width, height, device, connected) {
     ctx.fillStyle = "white"
-    ctx.font = `${fontSize}px Arial`
+
+    const responsiveFontSize = Math.max(Math.min(screen.width, screen.height) * 0.04, 30)
+    const lineSpacing = responsiveFontSize + 10
+
+    ctx.font = `${responsiveFontSize}px Arial`
 
     const textLines = [
       `DeviceId: ${device || "Unknown"}`,
@@ -102,17 +106,48 @@ export default function DebugView({ connected, bootstrapData }) {
       `Broker Connected: ${connected ? "Yes" : "No"}`,
     ]
 
-    textLines.forEach((text, index) => {
-      const x = 10
-      const y = height / 2 + 100 + index * (fontSize + 5)
+    const maxLineWidth = window.innerHeight < window.innerWidth ? 500 : 1000
+    let currentY = window.innerHeight / 2
+    let currentX = 10
 
-      const textWidth = ctx.measureText(text).width
+    textLines.forEach((text) => {
+      const words = text.split(" ")
+      let line = ""
+      let lines = []
 
-      ctx.fillStyle = "black"
-      ctx.fillRect(x - 5, y - fontSize, textWidth + 10, fontSize + 5)
+      // Wrap text to fit within maxLineWidth
+      words.forEach((word) => {
+        const testLine = line + word + " "
+        const testWidth = ctx.measureText(testLine).width
+        if (testWidth > maxLineWidth) {
+          lines.push(line.trim())
+          line = word + " "
+        } else {
+          line = testLine
+        }
+      })
+      lines.push(line.trim())
 
-      ctx.fillStyle = index === 5 ? (connected ? "lightgreen" : "red") : "white"
-      ctx.fillText(text, x, y)
+      lines.forEach((line) => {
+        if (currentY + responsiveFontSize > height) {
+          currentY = window.innerHeight / 2
+          currentX += maxLineWidth + 10
+        }
+
+        const textWidth = ctx.measureText(line).width
+
+        ctx.fillStyle = "black"
+        ctx.fillRect(
+          currentX - 5,
+          currentY - responsiveFontSize,
+          textWidth + 10,
+          responsiveFontSize + 5
+        )
+
+        ctx.fillStyle = "white"
+        ctx.fillText(line, currentX, currentY)
+        currentY += lineSpacing
+      })
     })
   }
 
