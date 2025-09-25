@@ -110,7 +110,7 @@ export default function DebugView({ connected, bootstrapData }) {
     let currentY = window.innerHeight / 2
     let currentX = 10
 
-    textLines.forEach((text) => {
+    textLines.forEach((text, index) => {
       const words = text.split(" ")
       let line = ""
       let lines = []
@@ -144,7 +144,11 @@ export default function DebugView({ connected, bootstrapData }) {
           responsiveFontSize + 5
         )
 
-        ctx.fillStyle = "white"
+        if (index == 5) {
+          ctx.fillStyle = connected ? "lightgreen" : "red"
+        } else {
+          ctx.fillStyle = "white"
+        }
         ctx.fillText(line, currentX, currentY)
         currentY += lineSpacing
       })
