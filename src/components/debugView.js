@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react"
-import "../../css/debugView.css" // Import external CSS file
+import "../../css/debugView.css"
 
 export default function DebugView({ connected, bootstrapData }) {
   const { device } = bootstrapData || {}
@@ -14,9 +14,6 @@ export default function DebugView({ connected, bootstrapData }) {
     const height = window.innerHeight
     canvas.width = width
     canvas.height = height
-
-    const screenDiagonal = Math.sqrt(width ** 2 + height ** 2)
-    const fontSize = screenDiagonal * 0.02
 
     drawColorBars(ctx, width, height)
     drawCircle(ctx, width, height)
@@ -162,6 +159,7 @@ export default function DebugView({ connected, bootstrapData }) {
       <div
         className="cursor-position"
         style={{
+          fontSize: Math.max(Math.min(screen.width, screen.height) * 0.04, 30),
           top: cursorPosition.y + 10,
           left: cursorPosition.x + 10,
         }}
