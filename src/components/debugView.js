@@ -120,7 +120,7 @@ export default function DebugView({ connected, bootstrapData }) {
 
     const maxLineWidth = window.innerHeight < window.innerWidth ? 500 : 1000
     let currentY = window.innerHeight / 2
-    let currentX = 10
+    let currentX = 20
 
     textLines.forEach((text, index) => {
       const words = text.split(" ")
