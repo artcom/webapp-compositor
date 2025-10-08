@@ -16,6 +16,7 @@ export default function DebugView({ connected, bootstrapData }) {
     canvas.height = height
 
     drawColorBars(ctx, width, height)
+    drawGreenBorder(ctx, width, height)
     drawCircle(ctx, width, height)
     drawGrid(ctx, width, height)
     drawInfoText(ctx, width, height, device, connected)
@@ -30,6 +31,14 @@ export default function DebugView({ connected, bootstrapData }) {
       canvas.removeEventListener("mousemove", handleMouseMove)
     }
   }, [connected, bootstrapData])
+
+  const drawGreenBorder = (ctx, width, height) => {
+    const borderWidth = 10
+    ctx.strokeStyle = "green"
+    ctx.lineWidth = borderWidth
+
+    ctx.strokeRect(borderWidth / 2, borderWidth / 2, width - borderWidth, height - borderWidth)
+  }
 
   const calculateFontSize = () => {
     return Math.max(Math.min(screen.width, screen.height) * 0.04, 30)
@@ -56,7 +65,7 @@ export default function DebugView({ connected, bootstrapData }) {
   }
 
   function drawGrid(ctx, width, height) {
-    ctx.strokeStyle = "rgba(128, 128, 128, 0.5)"
+    ctx.strokeStyle = "rgba(66, 66, 66, 0.5)"
     ctx.lineWidth = 1
     for (let i = 0; i < width; i += 50) {
       ctx.beginPath()
@@ -158,7 +167,6 @@ export default function DebugView({ connected, bootstrapData }) {
 
   return (
     <div className="debug-container">
-      <div className="green-border" />
       <canvas ref={canvasRef} className="debug-canvas" />
       <div
         className="cursor-position"
