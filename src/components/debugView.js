@@ -41,7 +41,9 @@ export default function DebugView({ connected, bootstrapData }) {
   }
 
   const calculateFontSize = () => {
-    return Math.max(Math.min(screen.width, screen.height) * 0.04, 30)
+    const shortSide = Math.min(screen.width, screen.height)
+    const fontSize = shortSide * 0.03
+    return Math.max(Math.min(fontSize, 50), 10)
   }
 
   function drawColorBars(ctx, width, height) {
