@@ -12,7 +12,7 @@ Note: On startup the compositor publishes `${administrationTopic}/doExecuteActio
 ### Start app local with staging environment
 
 ADMINISTRATION_TOPIC=debugTopic npm run watch
-http://localhost:8080/?wsBrokerUri=ws://broker.backend.staging.t-gallery:8888/mqtt&httpBrokerUri=http://broker.backend.staging.t-gallery:8080&debug
+http://localhost:8080/?wsBrokerUri=ws://example-broker:8888/mqtt&httpBrokerUri=http://example-broker:8080&debug
 
 ## API
 
@@ -31,8 +31,8 @@ This command starts a web application or website with the given `uri`.
   transition?: "fade" | "fadeToBlack" | "scrollLeft" | "scrollRight" | "scaleRight" | "none", // default: "fade"
   closeButton?: Object {    // Object describing a button to close/stop the webapp, default: undefined
     uri?: String,           // Uri of webapp or asset, default: undefined (transparent button)
-    left?: String,          // left postion of the closeButton, default: "90%"
-    top?: String,           // top postion of the closeButton, default: "0%"
+    left?: String,          // left position of the closeButton, default: "90%"
+    top?: String,           // top position of the closeButton, default: "0%"
     width?: String,         // width of the closeButton, default: "10%"
     height?: String,        // height of the closeButton, default: "10%"
     actions?: Object | Array // an ActionList (see ActionList Example) to be executed by an action-list-executor, default: undefined
@@ -41,8 +41,8 @@ This command starts a web application or website with the given `uri`.
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined
   bootstrap?: Boolean,      // defines wether to append bootstrap params to the uri or not, default: true
   restart?: Boolean,        // defines wether to restart the webApp if the same webApp is already open on the same layer, default: true
-  left?: String,            // left postion of the webApp, default: "0px"
-  top?: String,             // top postion of the webApp, default: "0px"
+  left?: String,            // left position of the webApp, default: "0px"
+  top?: String,             // top position of the webApp, default: "0px"
   width?: String,           // width of the webApp, default: "100%"
   height?: String           // height of the webApp, default: "100%"
 }
@@ -95,7 +95,7 @@ null
 
 ### \<administrationTopic\>/onTourDelete
 
-This event removes all running webApps wich have been started with the given tour.
+This event removes all running webApps which have been started with the given tour.
 
 **Payload Format:**
 
