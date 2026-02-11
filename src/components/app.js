@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux"
 import { AnimatePresence } from "framer-motion"
-import { useState, useCallback } from "react"
+import { useState } from "react"
 import { useMqttSubscribe } from "@artcom/mqtt-topping-react"
 
 import Status from "./status"
@@ -15,12 +15,8 @@ const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
   const layers = useSelector((state) => state.layers)
   const areExitingWebAppsToBeOverlaid = useSelector((state) => state.areExitingWebAppsToBeOverlaid)
 
-  useMqttSubscribe(
-    `tGallery/debug`,
-    useCallback((payload) => {
-      showDebugView(payload)
-    }, [])
-  )
+  useMqttSubscribe(`${administrationTopic}/debug`, showDebugView)
+
   return (
     <>
       {debugView && <DebugView connected={connected} bootstrapData={bootstrapData} />}
