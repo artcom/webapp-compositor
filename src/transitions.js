@@ -215,7 +215,7 @@ const animations = {
   [COMPONENT_TRANSITIONS.DIMMER]: {
     initial: { opacity: 0 },
     enter: {
-      opacity: 0.4,
+      opacity: 1,
       transition: {
         duration: 0.5,
         delay: WEBAPP_LOAD_TIMEOUT,

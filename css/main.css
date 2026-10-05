@@ -12,7 +12,6 @@ body {
 
 .dimmer {
   pointer-events: none;
-  background-color: black;
 }
 
 .fullscreen {
