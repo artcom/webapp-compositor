@@ -1,13 +1,14 @@
 import { motion } from "framer-motion"
 import { getZIndices } from "../layers"
 
-import { getTransition, COMPONENT_TRANSITIONS } from "../transitions"
+import { getDimmerTransition } from "../transitions"
 
 export const DEFAULT_DIMMER = {
   COLOR: "black",
   STRENGTH: 0.4,
   BLUR: 0,
   GRAYSCALE: 0,
+  DURATION: 0.5,
 }
 
 const MAX_BLUR_PX = 20
@@ -22,6 +23,7 @@ export function normalizeDimBackground(dimBackground) {
     strength = DEFAULT_DIMMER.STRENGTH,
     blur = DEFAULT_DIMMER.BLUR,
     grayscale = DEFAULT_DIMMER.GRAYSCALE,
+    duration = DEFAULT_DIMMER.DURATION,
   } = dimBackground === true ? {} : dimBackground
 
   return {
@@ -29,17 +31,18 @@ export function normalizeDimBackground(dimBackground) {
     strength: clamp(strength, 0, 1),
     blur: clamp(blur, 0, 1),
     grayscale: clamp(grayscale, 0, 1),
+    duration: Math.max(duration, 0),
   }
 }
 
-const Dimmer = ({ index, config }) => {
+const Dimmer = ({ index, config, webAppTransition }) => {
   const { dimmerZIndex } = getZIndices(index)
-  const { color, strength, blur, grayscale } = config
+  const { color, strength, blur, grayscale, duration } = config
   const backdropFilter = getBackdropFilter(blur, grayscale)
 
   return (
     <motion.div
-      {...getTransition(dimmerZIndex, dimmerZIndex, COMPONENT_TRANSITIONS.DIMMER)}
+      {...getDimmerTransition(dimmerZIndex, duration, webAppTransition)}
       className={`fullscreen dimmer`}
       style={{ backdropFilter, WebkitBackdropFilter: backdropFilter }}
     >

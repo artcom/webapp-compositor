@@ -42,7 +42,8 @@ This command starts a web application or website with the given `uri`.
     strength?: Number,      // opacity of the dim color from 0 to 1, default: 0.4
     blur?: Number,          // blur of everything behind the dimmer from 0 to 1 (1 = 20px), default: 0
     grayscale?: Number,     // desaturation of everything behind the dimmer from 0 to 1, default: 0
-  },
+    duration?: Number,      // fade duration in seconds, default: 0.5
+  },                        // the dimmer fades in before the webApp appears and fades out after the webApp's exit transition
   backgroundColor?: String, // CSS backgroundColor (e.g. "#fff") which is visible if the webApp has a transparent background, default: undefined
   bootstrap?: Boolean,      // defines wether to append bootstrap params to the uri or not, default: true
   restart?: Boolean,        // defines wether to restart the webApp if the same webApp is already open on the same layer, default: true

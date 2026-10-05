@@ -1,5 +1,6 @@
 import { addQueryParams } from "../src/actionCreators"
 import { normalizeDimBackground } from "../src/components/dimmer"
+import { getExitDuration, API_TRANSITIONS } from "../src/transitions"
 
 describe("addQueryParams", () => {
   const bootstrapData = {
@@ -90,6 +91,7 @@ describe("normalizeDimBackground", () => {
       strength: 0.4,
       blur: 0,
       grayscale: 0,
+      duration: 0.5,
     })
   })
 
@@ -99,15 +101,32 @@ describe("normalizeDimBackground", () => {
       strength: 0.4,
       blur: 0.5,
       grayscale: 0,
+      duration: 0.5,
     })
   })
 
   it("should clamp out of range values", function () {
-    expect(normalizeDimBackground({ strength: 2, blur: 3, grayscale: -1 })).toEqual({
+    expect(normalizeDimBackground({ strength: 2, blur: 3, grayscale: -1, duration: -1 })).toEqual({
       color: "black",
       strength: 1,
       blur: 1,
       grayscale: 0,
+      duration: 0,
     })
+  })
+})
+
+describe("getExitDuration", () => {
+  it("should sum delay and duration", function () {
+    expect(getExitDuration(API_TRANSITIONS.FADE)).toBe(1.5)
+    expect(getExitDuration(API_TRANSITIONS.NONE)).toBe(0)
+  })
+
+  it("should use the longest per-property transition", function () {
+    expect(getExitDuration(API_TRANSITIONS.FADE_TO_GRAY)).toBe(2)
+  })
+
+  it("should return 0 for unknown transitions", function () {
+    expect(getExitDuration("unknown")).toBe(0)
   })
 })

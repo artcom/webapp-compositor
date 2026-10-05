@@ -1,6 +1,5 @@
 export const COMPONENT_TRANSITIONS = {
   CLOSE_BUTTON: "closeButton",
-  DIMMER: "dimmer",
 }
 export const API_TRANSITIONS = {
   FADE: "fade",
@@ -34,6 +33,38 @@ export function getTransition(zIndexEnter, zIndexExit, animationType) {
       ...animations[animationType],
     },
   }
+}
+
+export function getDimmerTransition(zIndex, duration, webAppTransition) {
+  const transition = getTransition(zIndex, zIndex)
+
+  // fade in while the webApp loads and fade out after the webApp's exit transition finished
+  return {
+    ...transition,
+    variants: {
+      ...transition.variants,
+      initial: { opacity: 0 },
+      enter: {
+        opacity: 1,
+        transition: { duration, delay: 0 },
+      },
+      exit: {
+        opacity: 0,
+        transition: { duration, delay: getExitDuration(webAppTransition) },
+      },
+    },
+  }
+}
+
+// total time until the exit animation of the given transition has finished
+export function getExitDuration(animationType) {
+  const transition = animations[animationType]?.exit?.transition
+  if (!transition) {
+    return 0
+  }
+
+  const timings = "duration" in transition ? [transition] : Object.values(transition)
+  return Math.max(0, ...timings.map(({ duration = 0, delay = 0 }) => duration + delay))
 }
 
 const animations = {
@@ -209,21 +240,6 @@ const animations = {
         duration: 0.5,
         delay: 0,
       },
-    },
-  },
-
-  [COMPONENT_TRANSITIONS.DIMMER]: {
-    initial: { opacity: 0 },
-    enter: {
-      opacity: 1,
-      transition: {
-        duration: 0.5,
-        delay: WEBAPP_LOAD_TIMEOUT,
-      },
-    },
-    exit: {
-      opacity: 0,
-      transition: { duration: 0.5, delay: WEBAPP_LOAD_TIMEOUT },
     },
   },
 }
