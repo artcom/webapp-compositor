@@ -5,6 +5,7 @@ import { reset, startWebApp, stopWebApp } from "../actionCreators"
 import { DEFAULT_LAYER, LAYER_TYPES } from "../layers"
 import { DEFAULT_TRANSITION, API_TRANSITIONS } from "../transitions"
 import { DEFAULT_STYLE } from "./closeButton"
+import { DEFAULT_DIMMER } from "./dimmer"
 
 const CUSTOM_URI = "Custom Uri"
 
@@ -51,7 +52,25 @@ const DebugControls = () => {
       value: "{}",
       //hint: "JSON data to pass to the webApp",
     },
-    dimBackground: false,
+    dimBackground: folder({
+      isDimmed: false,
+      dimColor: { value: DEFAULT_DIMMER.COLOR, type: LevaInputs.STRING, label: "color" },
+      dimStrength: {
+        value: DEFAULT_DIMMER.STRENGTH,
+        min: 0,
+        max: 1,
+        step: 0.05,
+        label: "strength",
+      },
+      dimBlur: { value: DEFAULT_DIMMER.BLUR, min: 0, max: 1, step: 0.05, label: "blur" },
+      dimGrayscale: {
+        value: DEFAULT_DIMMER.GRAYSCALE,
+        min: 0,
+        max: 1,
+        step: 0.05,
+        label: "grayscale",
+      },
+    }),
     restart: true,
     backgroundColor: "rgba(0, 0, 0, 0)",
     left: { value: DEFAULT_LAYER.LEFT, type: LevaInputs.STRING },
@@ -77,7 +96,14 @@ const DebugControls = () => {
                 actions: JSON.parse(get("closeButton.actions")),
               },
             }),
-            dimBackground: get("dimBackground"),
+            ...(get("dimBackground.isDimmed") && {
+              dimBackground: {
+                color: get("dimBackground.dimColor"),
+                strength: get("dimBackground.dimStrength"),
+                blur: get("dimBackground.dimBlur"),
+                grayscale: get("dimBackground.dimGrayscale"),
+              },
+            }),
             bootstrap: get("bootstrap"),
             restart: get("restart"),
             backgroundColor: get("backgroundColor"),

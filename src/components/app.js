@@ -25,7 +25,14 @@ const App = ({ showDebugControls, administrationTopic, bootstrapData }) => {
 
       <AnimatePresence custom={areExitingWebAppsToBeOverlaid}>
         {layers.map((layer, index) => [
-          layer.dimBackground && <Dimmer key={`dimmer-${index}`} index={index} />,
+          layer.dimBackground && (
+            <Dimmer
+              key={`dimmer-${index}`}
+              index={index}
+              config={layer.dimBackground}
+              webAppTransition={layer.transition}
+            />
+          ),
           <WebApp
             key={`webApp-${index}${layer.uri}${layer.count}`}
             layer={layer}

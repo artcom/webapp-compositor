@@ -1,6 +1,7 @@
 import * as types from "./actionTypes"
 import { DEFAULT_LAYER } from "./layers"
 import { DEFAULT_TRANSITION } from "./transitions"
+import { normalizeDimBackground } from "./components/dimmer"
 
 export function setConnected(connected) {
   return connected ? { type: types.SET_CONNECTED } : { type: types.SET_DISCONNECTED }
@@ -42,7 +43,7 @@ export function startWebApp(payload, bootstrapData) {
       tour,
       layerType,
       transition,
-      dimBackground,
+      dimBackground: normalizeDimBackground(dimBackground),
       backgroundColor,
       left,
       top,

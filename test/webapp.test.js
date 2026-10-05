@@ -1,4 +1,5 @@
 import { addQueryParams } from "../src/actionCreators"
+import { normalizeDimBackground } from "../src/components/dimmer"
 
 describe("addQueryParams", () => {
   const bootstrapData = {
@@ -73,6 +74,40 @@ describe("addQueryParams", () => {
       wsBrokerUri: "ws://broker.backend.example.com:80/mqtt",
       tour: "myTour",
       tourTopic: "tours/myTour",
+    })
+  })
+})
+
+describe("normalizeDimBackground", () => {
+  it("should return undefined when disabled", function () {
+    expect(normalizeDimBackground(false)).toBeUndefined()
+    expect(normalizeDimBackground(undefined)).toBeUndefined()
+  })
+
+  it("should use defaults for true", function () {
+    expect(normalizeDimBackground(true)).toEqual({
+      color: "black",
+      strength: 0.4,
+      blur: 0,
+      grayscale: 0,
+    })
+  })
+
+  it("should merge partial config with defaults", function () {
+    expect(normalizeDimBackground({ color: "#e20074", blur: 0.5 })).toEqual({
+      color: "#e20074",
+      strength: 0.4,
+      blur: 0.5,
+      grayscale: 0,
+    })
+  })
+
+  it("should clamp out of range values", function () {
+    expect(normalizeDimBackground({ strength: 2, blur: 3, grayscale: -1 })).toEqual({
+      color: "black",
+      strength: 1,
+      blur: 1,
+      grayscale: 0,
     })
   })
 })
