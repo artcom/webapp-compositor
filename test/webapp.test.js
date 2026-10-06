@@ -90,8 +90,7 @@ describe("normalizeDimBackground", () => {
       color: "black",
       strength: 0.4,
       blur: 0,
-      grayscale: 0,
-      duration: 0.5,
+      fadeDuration: 0.5,
     })
   })
 
@@ -100,18 +99,16 @@ describe("normalizeDimBackground", () => {
       color: "#e20074",
       strength: 0.4,
       blur: 0.5,
-      grayscale: 0,
-      duration: 0.5,
+      fadeDuration: 0.5,
     })
   })
 
   it("should clamp out of range values", function () {
-    expect(normalizeDimBackground({ strength: 2, blur: 3, grayscale: -1, duration: -1 })).toEqual({
+    expect(normalizeDimBackground({ strength: 2, blur: 3, fadeDuration: -1 })).toEqual({
       color: "black",
       strength: 1,
       blur: 1,
-      grayscale: 0,
-      duration: 0,
+      fadeDuration: 0,
     })
   })
 })
