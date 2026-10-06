@@ -44,7 +44,11 @@ const Dimmer = ({ index, config, webAppTransition }) => {
     <motion.div
       {...getDimmerTransition(dimmerZIndex, duration, webAppTransition)}
       className={`fullscreen dimmer`}
-      style={{ backdropFilter, WebkitBackdropFilter: backdropFilter }}
+      style={{
+        backdropFilter,
+        WebkitBackdropFilter: backdropFilter,
+        pointerEvents: "auto",
+      }}
     >
       <div className="fullscreen" style={{ backgroundColor: color, opacity: strength }} />
     </motion.div>

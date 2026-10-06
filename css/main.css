@@ -10,10 +10,6 @@ body {
   background-color: black;
 }
 
-.dimmer {
-  pointer-events: none;
-}
-
 .fullscreen {
   position: absolute;
   overflow: hidden;
