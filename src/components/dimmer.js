@@ -45,6 +45,8 @@ const Dimmer = ({ index, config, webAppTransition }) => {
       {...getDimmerTransition(dimmerZIndex, duration, webAppTransition)}
       className={`fullscreen dimmer`}
       style={{
+        top: 0,
+        left: 0,
         backdropFilter,
         WebkitBackdropFilter: backdropFilter,
         pointerEvents: "auto",
